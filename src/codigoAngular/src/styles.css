@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+/* FONT */
+  --font-family-serif:'Piazzolla', serif;
+  --font-family-sansSerif:'Rubik', sans-serif;
+/* --- Nav */
+  --font-size-NavButtons:33px;
+/* --- Header */
+  --font-size-header-h1:75px;
+  --font-size-header-h2:33px;
+/* --- Cards */
+  --font-size-CardsBanner:45px;
+  --font-size-CardsMain-titular:45px;
+  --font-size-CardsMzain-bodyTxt:27px;
+  --font-size-Cards-titular: 29px;
+  --font-size-Cards-bodyTxt:20px;
+/* --- Modals & Pop-Ups */
+  --font-size-bodyTextModals:20px;
+  --font-size-titleDropdownsModals: 29px;
+/* --- Booking */
+  --font-size-dropDownCategories: 27px;
+  --font-size-standardBtn: 20px;
+  --font-size-FormLabel-serif: 29px;
+  --font-size-FormLabel-sansSerif: 27px;
+
+/* COLORS */
+
+  /*-----  Main Colors */
+  --main-color-white: #F2F6FF;
+  --main-color-darkGreen: #292620;
+  --main-color-lightGreen: #606C38;
+  --main-color-yellow:#F2B821;
+
+  /*----- Font Colors  */
+  --font-color-titulars: var(--font-color-titulars);
+  --font-color-remarkable: #283618;
+  --font-color-body-text: var(--main-color-lightGreen);
+  --font-color-disabled-text: #A1A88A;
+  --font-color-btnLight:var(--main-color-white);
+  --font-color-btnDark:var(--main-color-darkGreen);
+  /*-----  On card */
+  --font-color-lightOnCard: #7F878A;
+  --font-color-lightGreenOnCard: #7F878A;
+
+  /*-----  Button colors */
+  --btn-color-untoggleable:#D2D5CC;
+  --btn-color-callToAction:#F2B821;
+  --btn-color-secoundary:#A1A88A;
+
+  /*-----  Other */
+  --sec-color-onCalendar-festive: #CCD3D5;
+  --bg-card: #F2F6FF;
+  --bg-title-banner: var(--main-color-lightGreen);
+  --bg-color:#E0E3D7;
+
+}
+
+
+body{
+  background-color: var(--bg-color);
+  letter-spacing: 53px;
+  line-height: 32px;
+}

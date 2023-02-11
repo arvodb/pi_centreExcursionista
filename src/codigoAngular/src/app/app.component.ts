@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'codigoAngular';
+  public switcher = 1;
+  public log = ['out','in'];
 }
