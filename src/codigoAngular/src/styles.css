@@ -10,16 +10,16 @@
   --font-size-header-h2:23px;
 /* --- Cards */
   --font-size-CardsBanner:45px;
-  --font-size-CardsMain-titular:45px;
-  --font-size-CardsMzain-bodyTxt:27px;
-  --font-size-Cards-titular: 29px;
-  --font-size-Cards-bodyTxt:20px;
+  --font-size-CardsMain-titular:35px;
+  --font-size-CardsMain-bodyTxt:29px;
+  --font-size-Cards-titular: 20px;
+  --font-size-Cards-bodyTxt:14px;
 /* --- Modals & Pop-Ups */
   --font-size-bodyTextModals:20px;
   --font-size-titleDropdownsModals: 29px;
 /* --- Booking */
   --font-size-dropDownCategories: 27px;
-  --font-size-standardBtn: 20px;
+  --font-size-standardBtn: 12px;
   --font-size-FormLabel-serif: 29px;
   --font-size-FormLabel-sansSerif: 27px;
 
@@ -46,6 +46,7 @@
   --btn-color-untoggleable:#D2D5CC;
   --btn-color-callToAction:#F2B821;
   --btn-color-secoundary:#A1A88A;
+  --btn-color-callToAction-hover:#e6ac1b;
 
   /*-----  Other */
   --sec-color-onCalendar-festive: #CCD3D5;
@@ -58,5 +59,45 @@
 
 body{
   background-color: var(--bg-color);
-  line-height: 32px;
+  line-height: 1.4em;
+  letter-spacing: 0.05em;
+  font-family: var(--font-family-sansSerif);
+}
+.pi-buttonCard{
+  background-color: var(--main-color-yellow);
+  border-radius: 10px;
+  font-size: var(--font-size-standardBtn);
+  text-transform: uppercase;
+  color: var(--font-color-btnDark);
+  border:2px solid var(--main-color-yellow);
+  width:100%;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+}
+.pi-buttonCard:hover{
+  background-color: var(--main-color-yellow);
+  border:2px solid var(--btn-color-callToAction-hover);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+.pi-linkCard{
+  text-decoration: none;
+  font-size: var(--font-size-Cards-bodyTxt);
+  color:var(--main-color-lightGreen);
+  margin-bottom:0px;
+  border-bottom:1px solid var(--bg-card);
+}
+.pi-linkCard:hover{
+  text-decoration: none;
+  font-size: var(--font-size-Cards-bodyTxt);
+  color:var(--main-color-lightGreen);
+  margin-bottom:5px;
+  border-bottom:1px solid var(--main-color-lightGreen);
+}
+.pi-hrOnCard{
+  margin: 10px -5px;
+}
+.pi-card{
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* agrega una sombra de 10px con un desenfoque de 0px en horizontal y 0px en vertical, con un color semi-transparente */
+  background-color: var(--bg-card);
 }
