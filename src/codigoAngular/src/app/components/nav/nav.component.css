@@ -1,0 +1,9 @@
+.pi-link-nav{
+  font-family: var(--font-family-serif);
+  font-weight: 800;
+  font-size: 18px;
+}
+.pi-logo{
+  width: 35px;
+  mix-blend-mode: multiply;
+}

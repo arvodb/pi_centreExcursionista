@@ -6,8 +6,8 @@
 /* --- Nav */
   --font-size-NavButtons:33px;
 /* --- Header */
-  --font-size-header-h1:75px;
-  --font-size-header-h2:33px;
+  --font-size-header-h1:55px;
+  --font-size-header-h2:23px;
 /* --- Cards */
   --font-size-CardsBanner:45px;
   --font-size-CardsMain-titular:45px;
@@ -58,6 +58,5 @@
 
 body{
   background-color: var(--bg-color);
-  letter-spacing: 53px;
   line-height: 32px;
 }

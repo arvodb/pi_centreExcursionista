@@ -1,1 +1,10 @@
-<p>main-user works!</p>
+<div class="pt-3">
+  <app-nav></app-nav>
+</div>
+<div class="container">
+  <app-header
+  [userName]="userName"
+  [pageHeader]="pageHeader[0]"
+  ></app-header>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,9 @@
+.pi-mainTitle{
+  font-family: var(--font-family-serif);
+  font-weight: 800;
+  font-size: var(--font-size-header-h1);
+}
+.pi-mainSubtitle{
+  font-family: var(--font-family-sansSerif);
+  font-size: var(--font-size-header-h2);
+}
