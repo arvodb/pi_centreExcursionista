@@ -9,11 +9,11 @@
   --font-size-header-h1:55px;
   --font-size-header-h2:23px;
 /* --- Cards */
-  --font-size-CardsBanner:45px;
-  --font-size-CardsMain-titular:35px;
+  --font-size-CardsBanner:20px;
+  --font-size-CardsMain-titular:30px;
   --font-size-CardsMain-bodyTxt:29px;
-  --font-size-Cards-titular: 20px;
-  --font-size-Cards-bodyTxt:14px;
+  --font-size-Cards-titular: 18px;
+  --font-size-Cards-bodyTxt:12px;
 /* --- Modals & Pop-Ups */
   --font-size-bodyTextModals:20px;
   --font-size-titleDropdownsModals: 29px;
@@ -45,7 +45,7 @@
   /*-----  Button colors */
   --btn-color-untoggleable:#D2D5CC;
   --btn-color-callToAction:#F2B821;
-  --btn-color-secoundary:#A1A88A;
+  --btn-color-secoundary:#a7b480;
   --btn-color-callToAction-hover:#e6ac1b;
 
   /*-----  Other */
@@ -78,14 +78,32 @@ body{
   border:2px solid var(--btn-color-callToAction-hover);
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
+.pi-buttonGreen{
+  background-color: var(--btn-color-secoundary);
+  border-radius: 10px;
+  font-size: var(--font-size-standardBtn);
+  text-transform: uppercase;
+  color: var(--font-color-btnDark);
+  border:2px solid var(--btn-color-secoundary);
+  width:100%;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+}
+.pi-buttonGreen:hover{
+  background-color: var(--btn-color-secoundary);
+  border:2px solid #6a7a39;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+}
 .pi-linkCard{
   text-decoration: none;
   font-size: var(--font-size-Cards-bodyTxt);
   color:var(--main-color-lightGreen);
   margin-bottom:0px;
   border-bottom:1px solid var(--bg-card);
+  margin-top: -10px;
 }
 .pi-linkCard:hover{
+  margin-top: -10px;
+  margin-bottom:0px;
   text-decoration: none;
   font-size: var(--font-size-Cards-bodyTxt);
   color:var(--main-color-lightGreen);
@@ -96,8 +114,16 @@ body{
   margin: 10px -5px;
 }
 .pi-card{
-  padding: 25px;
+  padding: 20px;
+  margin-bottom: 15px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* agrega una sombra de 10px con un desenfoque de 0px en horizontal y 0px en vertical, con un color semi-transparente */
   background-color: var(--bg-card);
+}
+.pi-force-serif{
+  font-family: var(--font-family-serif)!important;
+}
+.pi-smallerTxt{
+  font-size:10px;
+  font-weight: 200;
 }
