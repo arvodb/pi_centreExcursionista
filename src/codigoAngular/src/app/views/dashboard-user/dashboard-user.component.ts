@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-user',
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DashboardUserComponent {
   public calendarNums : number[][] = [];
-  public colsCalendar : number = 7
+  public colsCalendar : number = 7;
   public fillCalendar() : void {
     let num = 30;
     let array = [];

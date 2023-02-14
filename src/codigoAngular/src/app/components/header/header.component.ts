@@ -12,4 +12,5 @@ export class HeaderComponent {
     caption: ''
   }
   @Input() userName = ''
+  @Input() page : number = 0;
 }

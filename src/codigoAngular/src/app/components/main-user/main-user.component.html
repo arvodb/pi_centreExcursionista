@@ -4,7 +4,8 @@
 <div class="container">
   <app-header
   [userName]="userName"
-  [pageHeader]="pageHeader[0]"
+  [pageHeader]="pageHeader[page]"
+  [page]="page"
   ></app-header>
   <router-outlet></router-outlet>
 </div>

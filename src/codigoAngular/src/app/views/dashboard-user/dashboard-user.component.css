@@ -76,7 +76,7 @@
 .accordion-button:not(.collapsed) {
   color: var(--main-color-lightGreen);
   background-color: var(--bg-card);
-  box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+  box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color)!important;
 }
 .pi-modalDate{
   margin-left:20px;

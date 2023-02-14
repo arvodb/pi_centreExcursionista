@@ -1,4 +1,9 @@
-<div class="pi-header d-flex justify-content-start my-3">
-  <h1 class="pi-mainTitle">Panel de usuario</h1>
-  <h2 class="pi-mainSubtitle align-self-end ps-3 mb-3">Bienvenido {{userName}}</h2>
+<div class="pi-header d-flex justify-content-start my-3" *ngIf="page < 1">
+  <h1 class="pi-mainTitle">{{pageHeader.title}}</h1>
+  <ng-template [ngIf]="page < 1">
+    <h2 class="pi-mainSubtitle align-self-end ps-3 mb-3">Bienvenido {{userName}}</h2>
+  </ng-template>
+  <ng-template [ngIf]="page >= 1">
+    <h2 class="pi-mainSubtitle align-self-end ps-3 mb-3">{{pageHeader.caption}}</h2>
+  </ng-template>
 </div>
