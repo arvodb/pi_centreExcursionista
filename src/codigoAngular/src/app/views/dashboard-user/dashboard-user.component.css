@@ -82,3 +82,17 @@
   margin-left:20px;
   margin-bottom:-20px;
 }
+
+.pi-buttonInsideCollapse{
+  width:30%;
+  min-width: 50px;
+  text-align: right;
+}
+.pi-containerDashboard{
+  max-height: 500px;
+  min-height: 300px;
+  height: 100%;
+}
+.pi-calendar{
+  margin-top:40px;
+}

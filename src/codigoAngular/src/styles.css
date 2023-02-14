@@ -108,7 +108,7 @@ body{
   font-size: var(--font-size-Cards-bodyTxt);
   color:var(--main-color-lightGreen);
   margin-bottom:5px;
-  border-bottom:1px solid var(--main-color-lightGreen);
+  border-color:var(--main-color-lightGreen);
 }
 .pi-hrOnCard{
   margin: 10px -5px;
