@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { HeaderTitles } from 'src/app/interfaces/headerInterface';
-import { Location } from '@angular/common';
+import { StorageService } from 'src/app/services/storage.service';
+
 
 @Component({
   selector: 'app-main-user',
@@ -10,19 +12,8 @@ import { Location } from '@angular/common';
 })
 export class MainUserComponent {
 
-  constructor(private location: Location) {
-    let badUrl = location.path().split('');
-    badUrl.shift();
-    this.currentUrl = badUrl.join('');
-
-    for(let i = 0; i < this.pageHeader.length;i++){
-      if(this.pageHeader[i].section === this.currentUrl){
-        this.page = i
-      }
-    }
-  }
-  public page : number = 0;
-  public currentUrl: string;
+  constructor(private router: Router,private headerService : StorageService) {}
+  public currentRoute : string = this.headerService.getCurrentHeader().section;
   public userName = 'Dani'
   public pageHeader : HeaderTitles[] = [
     {
@@ -38,6 +29,10 @@ export class MainUserComponent {
   ];
 
   ngOnInit(){
-    console.log(this.currentUrl)
+    this.router.events
+      .pipe(filter((event: any) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.currentRoute = event.url.slice(1);
+      });
   }
 }
