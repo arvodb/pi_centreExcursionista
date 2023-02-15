@@ -1,0 +1,8 @@
+{
+    "name": "PI-CET",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "server",
+    "workspaceFolder": "/home",
+    "shutdownAction": "stopCompose",
+    "forwardPorts": [8080]
+  }
