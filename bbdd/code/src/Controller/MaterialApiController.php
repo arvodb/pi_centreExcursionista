@@ -25,7 +25,8 @@ class MaterialApiController extends AbstractController
                 "ARMARIO" => $material->getArmario()
             ];
         }
-        return $this->json([$data]);
+        $response = [ 'material' => $data ];
+        return $this->json($response);
     }
 
     #[Route('/materiales/{id}', name: 'material_crud_get', methods: ['GET'])]
@@ -38,7 +39,8 @@ class MaterialApiController extends AbstractController
             "STOCK" => $material->getStock(),
             "ARMARIO" => $material->getArmario()
         ];
-        return $this->json([$data]);
+        $response = [ 'materialList' => $data ];
+        return $this->json($response);
     }
 
     #[Route('/materiales', name: 'material_crud_post', methods: ['POST'])]

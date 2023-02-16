@@ -3,6 +3,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { UserList } from 'src/app/interfaces/usersInterface';
 import { ServiceService } from 'src/app/services/service.service';
 import { ThisReceiver } from '@angular/compiler';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { ThisReceiver } from '@angular/compiler';
 })
 export class LoginComponent {
 
-  constructor(public userService : ServiceService,private route : Router) { }
+  constructor(public userService : ServiceService,private userStorage : StorageService) { }
 
   @Output() log = new EventEmitter<boolean>()
 
@@ -25,10 +26,9 @@ export class LoginComponent {
   {;
     console.log(this.validated)
     if(this.validated.passWord === true && this.validated.userName === true) {
-      localStorage.setItem('validated','true')
+      this.userStorage.setUser(this.userData);
+      localStorage.setItem('user',JSON.stringify(this.userData));
       this.log.emit();
-
-      //this.route.navigate(['/dashboad'])
     } else {
       alert('Algo a ido mal')
     }
@@ -70,16 +70,7 @@ export class LoginComponent {
     });
   }
 
-  ngOnInit(){
-    const data = localStorage.getItem('validated');
-    let local =  data ? JSON.parse(data) : '';
 
-    if(JSON.parse(local) === true){
-      this.log.emit();
-    } else {
-      localStorage.setItem('validated','false');
-    }
-  }
 }
 
 

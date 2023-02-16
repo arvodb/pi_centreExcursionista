@@ -1,3 +1,12 @@
+<ng-container [ngSwitch]="loading">
+
+
+<div class="pi-load" *ngSwitchCase="true">
+  <div class="spinner-grow text-light" role="status">
+    <span class="visually-hidden"></span>
+  </div>
+</div>
+<ng-container *ngSwitchCase="false">
 <div class="row pt-1 pi-containerDashboard d-flex align-items-stretch">
   <!-- primera columna -->
   <div class="col-lg-4 col-md-6 pt-4">
@@ -16,57 +25,57 @@
   </div>
   <!-- segunda columna -->
   <div class="col-lg-5 col-md-6 pt-4">
-      <div class="row d-flex align-items-stretch" style="margin-bottom: 20px;">
-        <div class="col-md-7">
-          <div class="card pi-card pi-bannerCard"  style="height:100%">
-            <div class="pi-card-header text-center">Noticias</div>
-            <div class="pi-txtCardContainer">
-              <h3 class="pi-cardTitleSans">Trail 30k Benimodo</h3>
-              <p class="pi-txt-smaller pi-light">Reserva tu material para la próxima expedición</p>
-              <div class="d-flex justify-content-end"><a href="#" class="pi-linkCard">ver más</a></div>
-              <hr class="pi-hrOnCard">
-            </div>
-            <div class="pi-txtCardContainer">
-              <h3 class="pi-cardTitleSans">Trail 30k Benimodo</h3>
-              <p class="pi-txt-smaller pi-light">Reserva tu material para la próxima expedición</p>
-              <div class="d-flex justify-content-end"><a href="#" class="pi-linkCard">ver más</a></div>
-            </div>
+    <div class="row d-flex align-items-stretch" style="margin-bottom: 20px;">
+      <div class="col-md-7">
+        <div class="card pi-card pi-bannerCard" style="height:100%">
+          <div class="pi-card-header text-center">Noticias</div>
+          <div class="pi-txtCardContainer">
+            <h3 class="pi-cardTitleSans">Trail 30k Benimodo</h3>
+            <p class="pi-txt-smaller pi-light">Reserva tu material para la próxima expedición</p>
+            <div class="d-flex justify-content-end"><a href="#" class="pi-linkCard">ver más</a></div>
+            <hr class="pi-hrOnCard">
           </div>
-        </div>
-        <div class="col-md-5 d-flex">
-          <div class="card pi-card pi-bannerCard" style="height:100%;width: 100%;">
-            <div class="pi-card-header text-center">Reservas</div>
-            <div class="pi-txtCardContainer">
-              <h3 class="pi-cardTitleSans">12 de Julio</h3>
-              <p>
-                <ul class="pi-cardList">
-                  <li class="pi-txt-smaller pi-light pi-list">1x Cuerdas</li>
-                  <li class="pi-txt-smaller pi-light pi-list">2x Pies de gato</li>
-                </ul>
-              <hr class="pi-hrOnCard">
-            </div>
-            <div class="pi-txtCardContainer">
-              <p class="pi-txt-smaller pi-light mx-2">No hay más reservas</p>
-            </div>
-            <div class="d-flex align-items-end" style="height:100%">
-              <a href="#" class="btn pi-buttonGreen align-self-end" data-bs-toggle="modal" data-bs-target="#exampleModal">ver todo</a>
-            </div>
+          <div class="pi-txtCardContainer">
+            <h3 class="pi-cardTitleSans">Trail 30k Benimodo</h3>
+            <p class="pi-txt-smaller pi-light">Reserva tu material para la próxima expedición</p>
+            <div class="d-flex justify-content-end"><a href="#" class="pi-linkCard">ver más</a></div>
           </div>
         </div>
       </div>
-      <div class="pi-bottomCard d-flex align-items-end">
-          <div class="card pi-card">
-            <h3 class="pi-cardTitleSerif">Organiza tu evento</h3>
-            <p class="pi-light">Reserva tus espacios para el próximo evento que quieras organziar</p>
-            <div class="d-flex align-items-end" style="height:100%">
-              <a href="#" class="btn pi-buttonCard">Reservar ahora</a>
-            </div>
+      <div class="col-md-5 d-flex">
+        <div class="card pi-card pi-bannerCard" style="height:100%;width: 100%;">
+          <div class="pi-card-header text-center">Reservas</div>
+          <div class="pi-txtCardContainer">
+            <h3 class="pi-cardTitleSans">12 de Julio</h3>
+            <p>
+            <ul class="pi-cardList">
+              <li class="pi-txt-smaller pi-light pi-list">1x Cuerdas</li>
+              <li class="pi-txt-smaller pi-light pi-list">2x Pies de gato</li>
+            </ul>
+            <hr class="pi-hrOnCard">
           </div>
+          <div class="pi-txtCardContainer">
+            <p class="pi-txt-smaller pi-light mx-2">No hay más reservas</p>
+          </div>
+          <div class="d-flex align-items-end" style="height:100%">
+            <a href="#" class="btn pi-buttonGreen align-self-end" data-bs-toggle="modal" data-bs-target="#exampleModal">ver todo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pi-bottomCard d-flex align-items-end">
+      <div class="card pi-card">
+        <h3 class="pi-cardTitleSerif">Organiza tu evento</h3>
+        <p class="pi-light">Reserva tus espacios para el próximo evento que quieras organziar</p>
+        <div class="d-flex align-items-end" style="height:100%">
+          <a href="#" class="btn pi-buttonCard">Reservar ahora</a>
+        </div>
+      </div>
 
-      </div>
+    </div>
   </div>
 
-<!-- tercera columna -->
+  <!-- tercera columna -->
   <div class="col-lg-3 col-md-4 pt-4">
     <div class="card pi-card">
       <table>
@@ -105,7 +114,7 @@
       </table>
       <div class="row pt-2">
         <div class="col-6 px-3 d-flex justify-content-start align-items-end" style="height:100%">
-          <a href="#" class="btn pi-smallBtn pi-buttonGreen"><</a>
+          <a href="#" class="btn pi-smallBtn pi-buttonGreen"></a>
         </div>
         <div class="col-6 px-3 d-flex justify-content-end align-items-end" style="height:100%">
           <a href="#" class="btn pi-smallBtn pi-buttonGreen">></a>
@@ -113,7 +122,7 @@
       </div>
     </div>
     <div class="d-flex align-items-end">
-      <a href="#" class="btn pi-buttonGreen" (click)="setNewHeader('calendar')" [routerLink]="'/calendar'">ver calendario</a>
+      <a href="#" class="btn pi-buttonGreen" [routerLink]="'/calendar'">ver calendario</a>
     </div>
   </div>
 </div>
@@ -130,70 +139,38 @@
           <p class="pi-light pi-modal-paragraph-header text-center">Puedes gestionar tus reservas desde aquí</p>
         </div>
       </div>
-      <div class="modal-body" style="padding-top: 0px;">
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-              <span class="pi-light pi-smallerTxt pi-modalDate">12 de julio - 19 de julio</span>
-              <button class="accordion-button collapsed pi-modalBooking-heads" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="false" aria-controls="flush-collapseOne">
-                Escapada en familia
-              </button>
-            </h2>
-            <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
-                <ul class="pi-cardList">
-                  <li class="pi-txt-smaller pi-light pi-list">1x Cuerdas</li>
-                  <li class="pi-txt-smaller pi-light pi-list">2x Pies de gato</li>
-                </ul>
-                <div class="d-flex justify-content-end">
-                  <a href="#" class="btn pi-buttonGreen pi-buttonInsideCollapse align-self-end">devolver</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-              <span class="pi-light pi-smallerTxt pi-modalDate">12 de julio - 19 de julio</span>
-              <button class="accordion-button collapsed pi-modalBooking-heads" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false" aria-controls="flush-collapseOne">
-                Escapada en familia
-              </button>
-            </h2>
-            <div id="collapse-1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
-                <ul class="pi-cardList">
-                  <li class="pi-txt-smaller pi-light pi-list">1x Cuerdas</li>
-                  <li class="pi-txt-smaller pi-light pi-list">2x Pies de gato</li>
-                </ul>
-                <div class="d-flex justify-content-end">
-                  <a href="#" class="btn pi-buttonGreen pi-buttonInsideCollapse align-self-end">devolver</a>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-              <span class="pi-light pi-smallerTxt pi-modalDate">12 de julio - 19 de julio</span>
-              <button class="accordion-button collapsed pi-modalBooking-heads" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="flush-collapseOne">
-                Escapada en familia
-              </button>
-            </h2>
-            <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
-                <ul class="pi-cardList">
-                  <li class="pi-txt-smaller pi-light pi-list">1x Cuerdas</li>
-                  <li class="pi-txt-smaller pi-light pi-list">2x Pies de gato</li>
-                </ul>
-                <div class="d-flex justify-content-end">
-                  <a href="#" class="btn pi-buttonGreen pi-buttonInsideCollapse align-self-end">devolver</a>
+        <div class="modal-body" style="padding-top: 0px;" *ngSwitchCase="false">
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item" *ngFor="let booking of userBooking;let i = index">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <span class="pi-light pi-smallerTxt pi-modalDate">{{formatDate(booking.FECHA_RESERVA)}} -
+                  {{formatDate(booking.FECHA_DEVOLUCION)}}</span>
+                <button class="accordion-button collapsed pi-modalBooking-heads" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapse-3" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Reserva {{i}}
+                </button>
+              </h2>
+              <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <ul class="pi-cardList">
+
+                    <li class="pi-txt-smaller pi-light pi-list">{{booking.CANTIDAD}}x {{booking.MATERIAL_NOMBRE}}</li>
+                    <li class="pi-txt-smaller pi-light pi-list">2x Pies de gato</li>
+                  </ul>
+                  <div class="d-flex justify-content-end">
+                    <a href="#" class="btn pi-buttonGreen pi-buttonInsideCollapse align-self-end">devolver</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       <div class="modal-footer">
         <button type="button" class="btn pi-buttonCard">Realizar una reserva</button>
       </div>
     </div>
   </div>
 </div>
+</ng-container>
+</ng-container>
