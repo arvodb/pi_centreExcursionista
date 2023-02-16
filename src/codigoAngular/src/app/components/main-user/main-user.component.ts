@@ -29,6 +29,7 @@ export class MainUserComponent {
   ];
 
   ngOnInit(){
+    console.log('hola');
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {

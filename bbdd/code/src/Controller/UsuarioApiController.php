@@ -26,8 +26,8 @@ class UsuarioApiController extends AbstractController
                 "PRIVILEGIO" => $usurio->getPrivilegio()
             ];
         }
-        $response = [ 'result' => $data ];
-        return $this->json($response );
+        $response = [ 'userList' => $data ];
+        return $this->json( $response  );
     }
 
     #[Route('/usuarios/{id}', name: 'usuario_crud_get', methods: ['GET'])]

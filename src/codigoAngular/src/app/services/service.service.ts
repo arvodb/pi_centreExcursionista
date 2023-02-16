@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ServiceService {
 
   constructor(public http: HttpClient) { }
-  public prevUrl : string = 'localhost:8000/';
+  public prevUrl : string = 'http://localhost:8000/';
   public userUrl : string = this.prevUrl+'usuarios';
 
   public getUsers(): Observable<Users>
