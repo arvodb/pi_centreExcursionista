@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { HeaderTitles } from 'src/app/interfaces/headerInterface';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-dashboard-user',
@@ -6,8 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard-user.component.css']
 })
 export class DashboardUserComponent {
+
+  constructor(private headerService: StorageService) {}
+
   public calendarNums : number[][] = [];
-  public colsCalendar : number = 7
+  public colsCalendar : number = 7;
+  public headerData : HeaderTitles = {
+    section:'dashboard',
+    title: 'Panel de usuario',
+    caption: 'Bienvenido'
+  }
   public fillCalendar() : void {
     let num = 30;
     let array = [];
@@ -21,8 +31,15 @@ export class DashboardUserComponent {
     }
     this.calendarNums = array;
   }
+
+  public setNewHeader(target : string) : void
+  {
+    this.headerService.setCurrentHeader(target)
+  }
+
   ngOnInit(){
     this.fillCalendar();
+
   }
 }
 

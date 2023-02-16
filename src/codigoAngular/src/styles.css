@@ -35,7 +35,7 @@
   --font-color-titulars: var(--font-color-titulars);
   --font-color-remarkable: #283618;
   --font-color-body-text: var(--main-color-lightGreen);
-  --font-color-disabled-text: #A1A88A;
+  --font-color-disabled-text: ##D2D5CC;
   --font-color-btnLight:var(--main-color-white);
   --font-color-btnDark:var(--main-color-darkGreen);
   /*-----  On card */
@@ -45,7 +45,7 @@
   /*-----  Button colors */
   --btn-color-untoggleable:#D2D5CC;
   --btn-color-callToAction:#F2B821;
-  --btn-color-secoundary:#a7b480;
+  --btn-color-secoundary:#A1A88A;
   --btn-color-callToAction-hover:#e6ac1b;
 
   /*-----  Other */

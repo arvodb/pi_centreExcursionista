@@ -1,11 +1,11 @@
 <div class="container">
 
   <p>login works!</p>
-  <form (ngSubmit)="logIn()" action="">
-    <label for="userName">Tu nombre</label>
-    <input type="text" name="userName" id=""><br>
-    <label for="apellido">Tu nombre</label>
-    <input type="text" name="apellido" id="">
+  <form (ngSubmit)="validateUser()" action="">
+    <label  for="userName">Tu nombre</label>
+    <input [(ngModel)]="userName" type="text" name="userName" id=""><br>
+    <label  for="passWord">Tu password</label>
+    <input [(ngModel)]="passWord" type="text" name="passWord" id="">
     <input type="submit" value="Login">
   </form>
 </div>

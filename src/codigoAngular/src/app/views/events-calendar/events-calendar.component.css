@@ -1,0 +1,50 @@
+.pi-bigCalendar{
+  height:40vw;
+  min-height:340px
+}
+.pi-calendar{
+  margin-top:40px;
+}
+.pi-numbers-calendar{
+  font-weight: 800;
+}
+.pi-smallBtn{
+  padding:3px;
+  width: 100px;
+}
+.pi-header-calendar{
+  font-family: var(--font-family-sansSerif);
+  font-weight: 400;
+  font-size: 11px;
+}
+.pi-serifSmall{
+  font-size:var(--font-size-Cards-titular);
+  font-weight: 900;
+}
+.pi-tableCalendar{
+  height: 90%;
+}
+.pi-listInfo{
+  width: 100%;
+}
+.pi-infoContainer{
+  padding-right: 20px;
+  margin-top: 40px;
+  max-height: 600px;
+  overflow: scroll;
+}
+.pi-infoType{
+  font-family: var(--font-size-standardBtn);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform:uppercase;
+}
+.pi-infoTitular{
+  font-family: var(--font-family-serif);
+  font-size: var(--font-size-CardsBanner);
+  font-weight: 800;
+}
+.pi-txt-smaller{
+  font-size: var(--font-size-Cards-bodyTxt);
+  margin-bottom: 5px;
+}
