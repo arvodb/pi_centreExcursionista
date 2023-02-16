@@ -76,7 +76,7 @@ export class LoginComponent {
 
     if(JSON.parse(local) === true){
       this.log.emit();
-    }else {
+    } else {
       localStorage.setItem('validated','false');
     }
   }

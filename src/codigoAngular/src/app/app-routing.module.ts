@@ -7,7 +7,7 @@ import { LoginComponent } from './views/login/login.component';
 
 
 const routes: Routes = [
-  {path:'', redirectTo: '', pathMatch: 'full'},
+  //{path:'', redirectTo: '', pathMatch: 'full'},
   {path:'login', component: LoginComponent},
   {path:'dashboard',component: DashboardUserComponent},
   {path:'bookingMaterial',component: BookingMaterialComponent},

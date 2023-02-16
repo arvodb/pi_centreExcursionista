@@ -14,10 +14,11 @@ export class AppComponent {
   {
     this.switcher = 1;
     console.log(this.log[this.switcher])
-    //window.location.replace("/dashboad");
+    window.location.replace("/dashboad");
   }
 
   ngOnInit(){
     console.log(this.log[this.switcher])
+    localStorage.clear();
   }
 }
