@@ -1,11 +1,73 @@
-<div class="container">
+<img src="../img/logo.jpg" class="rounded logo-imagen" alt="Logo">
+<section class="vh-75">
+  <div class="container py-5 h-100 ;">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center " style="background-color:#F2F6FF;border-radius: 15px;">
+            <div class="container" style="background-color:#606C38;;border-radius: 9px;margin-top: -100px;">
+              <h1 class="blanco">Aquí comienza<br>
+                tu aventura
+              </h1>
+            </div>
 
-  <p>login works!</p>
-  <form (ngSubmit)="validateUser()" action="">
-    <label  for="userName">Tu nombre</label>
-    <input [(ngModel)]="userName" type="text" name="userName" id=""><br>
-    <label  for="passWord">Tu password</label>
-    <input [(ngModel)]="passWord" type="text" name="passWord" id="">
-    <input type="submit" value="Login">
-  </form>
-</div>
+
+            <div class="form-outline ">
+              <label class="inputs">USERNAME</label>
+              <input type="email" id="typeEmailX-2" class="form-control form-control-lg " />
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="inputs" for="typePasswordX-2">PASSWORD</label>
+              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
+            </div>
+
+            <!-- Checkbox -->
+            <div class="form-check d-flex justify-content-start mb-4">
+
+              <label class="form-check-label" for="form1Example3" style="font-style:italic;margin-left: 200px;"> Has
+                olvidado tu contraseña?
+              </label>
+            </div>
+
+            <button class=" btn  btn-lg btn-block rounded-pill " style="font-size:14px;background-color: #F2B821;"
+              type="submit">COMENZAR</button>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="vh-50">
+  <div class="container py-5 h-100 ">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center " style="background-color:#F2F6FF;border-radius: 15px;">
+            <div class="container pt-2 pb-2" style="background-color:#F2B821;border-radius: 9px;margin-top: -80px;">
+
+              <h3 class="negro">Únete a la expedicion
+              </h3>
+            </div>
+            <div class="row align-items-start ">
+              <div class="col pt-3">
+                <h6>No tienes usuario todavia?</6><br>
+                  <p>No te preocuopes contacta con <br> nosotros para formar parte de la
+                    <br>aventura
+                  </p>
+              </div>
+              <div class="col pt-4">
+                <button class="btn  btn-lg  rounded-pill pr-4 pl-1" style="font-size:14px;background-color: #606C38;"
+                  type="submit">UNETE</button>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
