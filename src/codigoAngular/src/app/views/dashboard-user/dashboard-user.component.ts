@@ -13,7 +13,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class DashboardUserComponent {
 
   constructor(private userData: StorageService,private servicio : ServiceService) {}
-
+  public currentDay : {day:number,month:string,year:number} = this.setCurrentDay();
   public loading : boolean = false;
   public calendarNums : number[][] = [];
   public colsCalendar : number = 7;
@@ -58,22 +58,33 @@ export class DashboardUserComponent {
   public formatDate(date : string) : string
   {
     // Analizar la fecha en un objeto Date
-    const partesFecha = date.split('/');
-    const dia = +partesFecha[0];
-    const mes = +partesFecha[1];
-    const anio = +partesFecha[2];
-    const dateFormat = new Date(anio, mes - 1, dia);
+    let partesFecha = date.split('/');
+    let dia = +partesFecha[0];
+    let mes = +partesFecha[1];
+    let anio = +partesFecha[2];
+    let dateFormat = new Date(anio, mes - 1, dia);
 
     // Formatear la fecha en "d mes"
-    const opcionesFecha : Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long' };
-    const fechaFormateada = dateFormat.toLocaleDateString('es-ES', opcionesFecha);
+    let opcionesFecha : Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long' };
+    let fechaFormateada = dateFormat.toLocaleDateString('es-ES', opcionesFecha);
 
     return fechaFormateada
   }
 
+  public currentDay() : {day:number,month:string,year:number} {
+    let number = this.fechaActual.getDate();
+    let string = this.obtenerNombreMes(this.fechaActual.getMonth());
+    let number = this.fechaActual.getFullYear();
+
+    obtenerNombreMes(numeroMes: number): string {
+      const nombresMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      return nombresMeses[numeroMes];
+    }
+  }
   ngOnInit(){
     this.fillCalendar();
     this.getBooking();
+    this.currentDay();
   }
 }
 

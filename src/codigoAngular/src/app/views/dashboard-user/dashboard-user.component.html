@@ -76,7 +76,7 @@
   </div>
 
   <!-- tercera columna -->
-  <div class="col-lg-3 col-md-4 pt-4">
+  <div class="col-lg-3 col-md-12 pt-4">
     <div class="card pi-card">
       <table>
         <h3 class="pi-force-serif pi-serifSmall">Perfil</h3>
@@ -107,14 +107,25 @@
         <tbody>
           <tr *ngFor="let week of calendarNums">
             <td *ngFor="let day of week" class="pi-force-serif text-center pi-numbers-calendar m-1 py-2">
-              {{ day }}
+              <ng-container *ngIf="day == currentDay">
+                <ng-container *ngIf="day > 10 && day < 20; else elseBlock">
+                  <span class="pi-eventDay p-1">
+                    {{ day }}
+                  </span>
+                </ng-container>
+                <ng-template #elseBlock>
+                  <span class="p-1">
+                    {{ day }}
+                  </span>
+                </ng-template>
+              </ng-container>
             </td>
           </tr>
         </tbody>
       </table>
       <div class="row pt-2">
         <div class="col-6 px-3 d-flex justify-content-start align-items-end" style="height:100%">
-          <a href="#" class="btn pi-smallBtn pi-buttonGreen"></a>
+          <a href="#" class="btn pi-smallBtn pi-buttonGreen"><</a>
         </div>
         <div class="col-6 px-3 d-flex justify-content-end align-items-end" style="height:100%">
           <a href="#" class="btn pi-smallBtn pi-buttonGreen">></a>
@@ -142,7 +153,7 @@
         <div class="modal-body" style="padding-top: 0px;" *ngSwitchCase="false">
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item" *ngFor="let booking of userBooking;let i = index">
-              <h2 class="accordion-header" id="flush-headingOne">
+              <h2 class="accordion-header" id="flush-heading{{i}}">
                 <span class="pi-light pi-smallerTxt pi-modalDate">{{formatDate(booking.FECHA_RESERVA)}} -
                   {{formatDate(booking.FECHA_DEVOLUCION)}}</span>
                 <button class="accordion-button collapsed pi-modalBooking-heads" type="button" data-bs-toggle="collapse"

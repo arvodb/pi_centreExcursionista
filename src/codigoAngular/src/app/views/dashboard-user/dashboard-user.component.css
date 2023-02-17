@@ -112,3 +112,8 @@
   width: 3rem;
   height: 3rem;
 }
+.pi-eventDay {
+ background-color: var(--font-color-lightOnCard);
+ border-radius: 5px;
+ color: var(--btn-color-secoundaryd);
+}
