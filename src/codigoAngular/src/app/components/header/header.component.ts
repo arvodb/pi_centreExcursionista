@@ -21,6 +21,11 @@ export class HeaderComponent {
       section:'calendar',
       title: 'Calendario',
       caption: 'No te pierdas nada'
+    },
+    {
+      section:'bookingMaterial',
+      title: 'Reserva de Material',
+      caption: 'Prepara tu expedición'
     }
   ];
   ngOnInit(){

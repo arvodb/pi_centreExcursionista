@@ -1,1 +1,123 @@
-<p>booking-material works!</p>
+<div class="row d-flex justify-content-evenly">
+    <form method="post" action="#" class="row d-flex">
+        <div class="col-lg-4 col-md-4 pt-4">
+            <div class="pi-card-header text-center pi-force-serif pi-serifSmall title-booking">Fechas de
+                disponibilidad<i class="bi bi-calendar-event ms-2"></i></div>
+            <hr class="pi-hrOnCard">
+            <div class="row d-flex align-items-stretch" style="margin-bottom: 20px;">
+                <div class="card pi-card pi-bannerCard" style="height:100%">
+                    <div class="pi-txtCardContainer">
+                        <h3 class="title-booking-div">Fecha de la reserva</h3>
+                    </div>
+                    <div class="pi-txtCardContainer d-flex justify-content-around">
+                        <div class="date-box">
+                            <label for="dia1">Día</label>
+                            <select [(ngModel)]="dia1" id="dia1" name="dia1" class="rounded-2 date-select">
+                                <option *ngFor="let day of days" [value]="day">{{day}}</option>
+                            </select>
+                        </div>
+                        <div class="date-box">
+                            <label for="mes1">Mes</label>
+                            <select [(ngModel)]="mes1" id="mes1" name="mes1" class="rounded-2 date-select" style="width: 110px!important;">
+                                <option *ngFor="let month of months; let i = index" [value]="numberMonths[i]">{{month}}</option>
+                            </select>
+                        </div>
+                        <div class="date-box">
+                            <label for="anyo1">Año</label>
+                            <select [(ngModel)]="anyo1" id="anyo1" name="anyo1" class="rounded-2 date-select">
+                                <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="pi-txtCardContainer">
+                        <h3 class="title-booking-div">Fecha de la devolución</h3>
+                    </div>
+                    <div class="pi-txtCardContainer d-flex justify-content-around">
+                        <div class="date-box">
+                            <label for="dia2">Día</label>
+                            <select [(ngModel)]="dia2" id="dia2" name="dia2" class="rounded-2 date-select">
+                                <option *ngFor="let day of days" [value]="day">{{day}}</option>
+                            </select>
+                        </div>
+                        <div class="date-box">
+                            <label for="mes2">Mes</label>
+                            <select [(ngModel)]="mes2" id="mes2" name="mes2" class="rounded-2 date-select"
+                                style="width: 110px!important;">
+                                <option *ngFor="let month of months; let i = index" [value]="numberMonths[i]">{{month}}</option>
+                            </select>
+                        </div>
+                        <div class="date-box">
+                            <label for="anyo2">Año</label>
+                            <select [(ngModel)]="anyo2" id="anyo2" name="anyo2" class="rounded-2 date-select">
+                                <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <button (click)="cambiarEstilos()" href="#" class="btn pi-buttonCard">Ver material disponible</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 pt-4">
+            <div class="pi-card-header text-center pi-force-serif pi-serifSmall title-booking">Materiales<i
+                    class="bi bi-hammer ms-2"></i></div>
+            <hr class="pi-hrOnCard">
+            <div class="row d-flex align-items-stretch" style="margin-bottom: 20px;">
+                <div class="">
+                    <div [ngStyle]="estiloMateriales" class="card pi-card pi-bannerCard" style="height:100%; max-height: 291px; width: 100%;">
+                        <ul class="d-flex flex-column justify-content-between materialsList scroll">
+                            <div *ngFor="let material of arrayMateriales;" class="justify-content-between">
+                                <div (click)="cambiarEstilos2()" (click)="clickMaterial(material)" class="d-flex justify-content-between">
+                                    <i class="bi bi-plus-lg"></i>{{ material.nombre }}<div>{{ material.stock }}</div>
+                                </div>
+                                <hr class="pi-hrOnCard">
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 pt-4">
+            <div class="pi-card-header text-center pi-force-serif pi-serifSmall title-booking">Reservado<i
+                    class="bi bi-bag-check ms-2"></i></div>
+            <hr class="pi-hrOnCard">
+            <div class="row d-flex align-items-stretch" style="margin-bottom: 20px;">
+                <div class="">
+                    <div [ngStyle]="estiloMateriales2" class="card pi-card pi-bannerCard" style="height:100%; max-height: 291px; width: 100%;">
+                        <ul class="d-flex flex-column justify-content-between materialsList scroll">
+                            <div *ngFor="let materialReservado of arrayReservados;" class="justify-content-between">
+                                <div class="d-flex justify-content-between">
+                                    <div>{{ materialReservado.nombre }}</div>
+                                    <div>{{ materialReservado.stock }}</div>
+                                    <div><i (click)="restar(materialReservado)" class="bi bi-arrow-left-square"></i>
+                                        <i (click)="borrar(materialReservado)" class="bi bi-trash3 ms-2"></i>
+                                    </div>
+                                </div>
+                                <hr class="pi-hrOnCard">
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input (click)="mostrarModal()" [ngStyle]="estiloMateriales2" value="Confirmar Reserva" class="btn pi-buttonCard" />
+        <div [ngStyle]="modalStyle" class="modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Confirmación</h1>
+                        <button type="button" (click)="cerrarModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estas seguro que deseas realizar la reserva?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" (click)="cerrarModal()" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" (click)="onDate()" [routerLink]="'/dashboard'" class="btn btn-success">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

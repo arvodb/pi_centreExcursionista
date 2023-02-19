@@ -127,6 +127,33 @@ body{
   font-size:10px;
   font-weight: 200;
 }
+.date-box{
+  display: flex;
+  flex-direction: column;
+}
+.date-select{
+  width: 65px;
+  height: 35px;
+  border: 2px solid var(--main-color-lightGreen);
+}
+.title-booking{
+  font-weight: 1000;
+  font-size: 20px;
+}
+.title-booking-div{
+  font-size: 17px;
+  font-family: var(--font-family-sansSerif);
+  font-weight: bold;
+}
+.materialsList{
+  padding-left: 0rem!important;
+}
+
+.scroll{
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .pi-serifSmall{
   font-size:var(--font-size-Cards-titular);
   font-weight: 900;
