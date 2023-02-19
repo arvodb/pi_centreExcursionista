@@ -30,7 +30,8 @@ class ReservaMaterialApiController extends AbstractController
                 "FECHA_DEVOLUCION" => $reserva->getFechaDevolucion()->format('d/m/Y')
             ];
         }
-        return $this->json([$data]);
+        $response = [ 'reservas' => $data ];
+        return $this->json($response);
     }
 
     #[Route('/reservaMaterial/{id}/{id2}/{fecha}', name: 'reservaMaterial_crud_get', methods: ['GET'])]
