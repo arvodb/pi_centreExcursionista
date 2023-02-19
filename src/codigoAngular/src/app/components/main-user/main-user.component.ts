@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { HeaderTitles } from 'src/app/interfaces/headerInterface';
@@ -12,8 +12,9 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class MainUserComponent {
 
-  constructor(private router: Router,private headerService : StorageService) {}
-  public currentRoute : string = this.headerService.getCurrentHeader().section;
+  constructor(private router: Router) {}
+  @Output() reset = new EventEmitter<boolean>()
+  public currentRoute : string = '';
   public userName = 'Dani'
   public pageHeader : HeaderTitles[] = [
     {
@@ -32,12 +33,16 @@ export class MainUserComponent {
       caption: 'Prepara tu expedición'
     }
   ];
-
+  public sendReset() : void
+  {
+    this.reset.emit();
+  }
   ngOnInit(){
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.currentRoute = event.url.slice(1);
       });
+
   }
 }

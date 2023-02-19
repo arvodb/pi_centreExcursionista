@@ -1,11 +1,40 @@
-<div class="container">
+<div class="falseBody">
 
-  <p>login works!</p>
-  <form (ngSubmit)="logIn()" action="">
-    <label  for="userName">Tu nombre</label>
-    <input [(ngModel)]="userName" type="text" name="userName" id=""><br>
-    <label  for="passWord">Tu password</label>
-    <input [(ngModel)]="passWord" type="text" name="passWord" id="">
-    <input type="submit" value="Login">
-  </form>
+
+  <img src="/assets/logo.jpg" class="rounded logo-imagen" alt="Logo">
+  <section >
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 " style="background-color:#F2F6FF;border-radius: 15px;">
+              <div class="container" style="background-color:#606C38;;border-radius: 9px;margin-top: -100px;">
+                <h1 class="blanco mb-4 text-center">Aquí comienza<br>
+                  tu aventura
+                </h1>
+              </div>
+
+              <form (ngSubmit)="validateUser()" action="" method="post">
+
+                <div class="form-outline justify-content-start mb-4">
+                  <label class="pi-force-serif pi-serifSmall" for="userName">USERNAME</label>
+                  <input [(ngModel)]="userName" type="txt" id="userName" name="userName" class="form-control form-control-lg " value=""/>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="pi-force-serif pi-serifSmall" for="password">PASSWORD</label>
+                  <input [(ngModel)]="passWord" type="password" id="password" name="userPass" class="form-control form-control-lg" value=""/>
+              </div>
+
+              <!-- Checkbox -->
+
+              <input type="submit" value="COMENZAR" class="btn pi-buttonCard" style="font-size:14px;background-color: #F2B821;">
+
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

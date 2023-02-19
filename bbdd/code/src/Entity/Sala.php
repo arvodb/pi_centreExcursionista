@@ -3,25 +3,24 @@
 namespace App\Entity;
 
 use App\Repository\SalaRepository;
-use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SalaRepository::class)]
 class Sala
 {
     #[ORM\Id]
-    #[ORM\Column(name: 'NOMBRE_SALA')]
+    #[ORM\Column(name: 'NUMERO_SALA')]
     private ?int $id = null;
 
-    #[ORM\Column(name: 'FECHA_RESERVA', type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $fechaReserva = null;
+    #[ORM\OneToMany(mappedBy: 'NUMERO_SALA', targetEntity: ReservaSala::class)]
+    private Collection $reservaSalas;
 
-    #[ORM\ManyToOne(inversedBy: 'salas')]
-    #[ORM\JoinColumn(name: 'ID_USUARIO', referencedColumnName: 'ID', nullable: true)]
-    private ?Usuario $idUsuario = null;
-
-    #[ORM\Column(name: 'ESTADO', type: Types::STRING, length: 20, nullable: false)]
-    private ?string $estado = null;
+    public function __construct()
+    {
+        $this->reservaSalas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -34,38 +33,32 @@ class Sala
         return $this;
     }
 
-    public function getFechaReserva(): ?\DateTimeInterface
+    /**
+     * @return Collection<int, ReservaSala>
+     */
+    public function getReservaSalas(): Collection
     {
-        return $this->fechaReserva;
+        return $this->reservaSalas;
     }
 
-    public function setFechaReserva(\DateTimeInterface $fechaReserva): self
+    public function addReservaSala(ReservaSala $reservaSala): self
     {
-        $this->fechaReserva = $fechaReserva;
+        if (!$this->reservaSalas->contains($reservaSala)) {
+            $this->reservaSalas->add($reservaSala);
+            $reservaSala->setNumeroSala($this);
+        }
 
         return $this;
     }
 
-    public function getIdUsuario(): ?Usuario
+    public function removeReservaSala(ReservaSala $reservaSala): self
     {
-        return $this->idUsuario;
-    }
-
-    public function setIdUsuario(?Usuario $idUsuario): self
-    {
-        $this->idUsuario = $idUsuario;
-
-        return $this;
-    }
-
-    public function getEstado(): ?string
-    {
-        return $this->estado;
-    }
-
-    public function setEstado(string $estado): self
-    {
-        $this->estado = $estado;
+        if ($this->reservaSalas->removeElement($reservaSala)) {
+            // set the owning side to null (unless already changed)
+            if ($reservaSala->getNumeroSala() === $this) {
+                $reservaSala->setNumeroSala(null);
+            }
+        }
 
         return $this;
     }

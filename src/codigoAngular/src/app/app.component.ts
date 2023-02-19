@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { StorageService } from './services/storage.service';
+import { UserList } from './interfaces/usersInterface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,17 +9,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'codigoAngular';
-  public switcher = 1;
-  public log = ['out','in'];
+  constructor(private userData : StorageService, private router: Router){
 
+  }
+
+  public log : boolean = false;
+  public user : UserList = this.userData.getUser();
   public logIn() : void
   {
-    this.switcher = 1;
-    console.log(this.log[this.switcher])
+    this.log = true;
+    console.log(this.log);
+    this.router.navigate(['/dashboard']);
+  }
+  public reset() : void
+  {
+      this.log = false;
+      console.log(this.log);
+  }
+  ngOnInit(){
+    const data = localStorage.getItem('user');
+    if(data){
+      this.user = JSON.parse(data);
+      this.userData.setUser(this.user);
+      this.logIn();
+    }
   }
 
-  ngOnInit(){
-    console.log(this.log[this.switcher])
-  }
 }

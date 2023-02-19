@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+#[Route('/api', name: 'api_')]
 class UsuarioApiController extends AbstractController
 {
     #[Route('/usuarios', name: 'usuario_crud_get_all', methods: ['GET'])]
@@ -26,11 +27,11 @@ class UsuarioApiController extends AbstractController
                 "PRIVILEGIO" => $usurio->getPrivilegio()
             ];
         }
-        $response = [ 'result' => $data ];
-        return $this->json($response );
+        $result = ['userList' => $data];
+        return $this->json($result);
     }
 
-    #[Route('/usuarios/{id}', name: 'usuario_crud_get', methods: ['GET'])]
+/*     #[Route('/usuarios/{id}', name: 'usuario_crud_get', methods: ['GET'])]
     public function index2(int $id, EntityManagerInterface $em): JsonResponse
     {
         $usuario = $em->getRepository(Usuario::class)->find($id);
@@ -41,8 +42,8 @@ class UsuarioApiController extends AbstractController
             "CORREO" => $usuario->getCorreo(),
             "PRIVILEGIO" => $usuario->getPrivilegio()
         ];
-        return $this->json($data);
-    }
+        return $this->json([$data]);
+    } */
 
     #[Route('/usuarios', name: 'usuario_crud_post', methods: ['POST'])]
     public function index3(Request $request, EntityManagerInterface $em): JsonResponse

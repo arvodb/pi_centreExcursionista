@@ -1,11 +1,13 @@
-<div [ngSwitch]="log[switcher]">
-  <div *ngSwitchCase="'out'">
+<div [ngSwitch]="log">
+  <div *ngSwitchCase="false">
     <app-login
     (log)="logIn()"
     ></app-login>
   </div>
-  <div *ngSwitchCase="'in'">
-    <app-main-user></app-main-user>
+  <div *ngSwitchCase="true">
+    <app-main-user
+    (reset)="reset()"
+    ></app-main-user>
   </div>
 </div>
 

@@ -21,10 +21,7 @@ class SalaApiController extends AbstractController
 
         foreach ($salas as $sala) {
             $data[] = [
-                "NOMBRE_SALA" => $sala->getId(),
-                "ESTADO" => $sala->getEstado(),
-                "FECHA_RESERVA" => $sala->getFechaReserva()->format('d/m/Y H:i'),
-                "USUARIO_NOMBRE" => $sala->getIdUsuario()->getNombreUsuario()
+                "NUMERO_SALA" => $sala->getId()
             ];
         }
         return $this->json([$data]);
@@ -35,28 +32,18 @@ class SalaApiController extends AbstractController
     {
         $sala = $em->getRepository(Sala::class)->find($id);
         $data = [
-            "NOMBRE_SALA" => $sala->getID(),
-            "ESTADO" => $sala->getEstado(),
-            "FECHA_RESERVA" => $sala->getFechaReserva()->format('d/m/Y H:i'),
-            "USUARIO_NOMBRE" => $sala->getIdUsuario()->getNombreUsuario()
+            "NUMERO_SALA" => $sala->getId()
         ];
         return $this->json([$data]);
     }
 
     #[Route('/salas', name: 'sala_crud_post', methods: ['POST'])]
-    public function index3(Request $request, EntityManagerInterface $em, UsuarioRepository $usuarioRepository): JsonResponse
+    public function index3(Request $request, EntityManagerInterface $em): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        $usuarioId = $usuarioRepository->find($data["USUARIO_ID"]);
         $newSala = new Sala();
-        if($data['FECHA_RESERVA'] !== ""){
-            $fecha = new DateTimeImmutable($data['FECHA_RESERVA']);
-            $newSala->setFechaReserva($fecha);
-        }
         $newSala
-            ->setId($data['NOMBRE_SALA'])
-            ->setEstado($data['ESTADO']);
-        $newSala->setIdUsuario($usuarioId);
+            ->setId($data['NUMERO_SALA']);
         $em->getRepository(Sala::class)->save($newSala, true);
         return $this->json([
             'message' => "Insertado correctamente."
@@ -70,27 +57,6 @@ class SalaApiController extends AbstractController
         $em->getRepository(Sala::class)->remove($sala, true);
         return $this->json([
             'message' => "Borrado correctamente."
-        ]);
-    }
-
-    #[Route('/salas/{id}', name: 'sala_crud_put', methods: ['PUT'])]
-    public function index5(int $id, Request $request, EntityManagerInterface $em, UsuarioRepository $usuarioRepository): JsonResponse
-    {
-        $data = json_decode($request->getContent(), true);
-        $sala = $em->getRepository(Sala::class)->find($id);
-        if($data['FECHA_RESERVA'] !== ""){
-            $fecha = new DateTimeImmutable($data['FECHA_RESERVA']);
-            $sala->setFechaReserva($fecha);
-        }
-        $usuarioId = $usuarioRepository->find($data["USUARIO_ID"]);
-        $sala
-            ->setId($data['NOMBRE_SALA'])
-            ->setEstado($data['ESTADO'])
-            ->setFechaReserva($fecha);
-        $sala->setIdUsuario($usuarioId);
-        $em->getRepository(Sala::class)->save($sala, true);
-        return $this->json([
-            'message' => "Actualizado correctamente."
         ]);
     }
 }

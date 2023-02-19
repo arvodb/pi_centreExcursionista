@@ -154,3 +154,7 @@ body{
   overflow-y: auto;
 }
 
+.pi-serifSmall{
+  font-size:var(--font-size-Cards-titular);
+  font-weight: 900;
+}
