@@ -22,7 +22,6 @@ export class LoginComponent {
   public validated : {userName:boolean, passWord:boolean} = {
     userName:false, passWord:false
   };
-
   public userData : UserList = {ID:0,NOMBRE_USUARIO:'', CONTRASEÑA:'', CORREO:'', PRIVILEGIO:''};
 
   public logIn() : void
@@ -31,6 +30,7 @@ export class LoginComponent {
     if(this.validated.passWord === true && this.validated.userName === true) {
 
       this.storageService.setUser(this.userData);
+
       localStorage.setItem('user',JSON.stringify(this.userData));
       this.log.emit();
     } else {
@@ -49,7 +49,6 @@ export class LoginComponent {
         this.validated.passWord = false;
         this.passWord = '';
         this.userName = '';
-
       }
 
       if(existName.length > 0){
@@ -60,11 +59,16 @@ export class LoginComponent {
           this.validated.passWord = true;
           this.userData = existPassword[0];
 
+          //redirige al panel de administrador
+          if(this.userData.PRIVILEGIO === "Administrador"){
+            window.location.href="localhost:8000/dashboard";
+          }
+
         } else {
           this.validated.passWord = false;
           this.passWord = '';
         }
-        console.log(this.validated)
+        //console.log(this.validated)
         this.logIn();
       }
     });

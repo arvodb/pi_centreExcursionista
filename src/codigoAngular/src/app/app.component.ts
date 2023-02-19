@@ -18,13 +18,11 @@ export class AppComponent {
   public logIn() : void
   {
     this.log = true;
-    console.log(this.log);
     this.router.navigate(['/dashboard']);
   }
   public reset() : void
   {
       this.log = false;
-      console.log(this.log);
   }
   ngOnInit(){
     const data = localStorage.getItem('user');

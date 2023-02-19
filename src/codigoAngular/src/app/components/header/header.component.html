@@ -1,9 +1,16 @@
 <div class="pi-header d-flex justify-content-start my-3">
-
   <ng-container *ngFor="let header of pageHeaders">
     <ng-container *ngIf="header.section == currentRoute">
-      <h1 class="pi-mainTitle">{{header.title}}</h1>
-      <h2 class="pi-mainSubtitle align-self-end ps-3 mb-3">{{header.caption}}</h2>
+      <ng-container [ngSwitch]="currentRoute">
+        <ng-container *ngSwitchCase="'dashboard'">
+          <h1 class="pi-mainTitle">{{header.title}}</h1>
+          <h2 class="pi-mainSubtitle align-self-end ps-3 mb-3">{{header.caption}} {{userName}}</h2>
+        </ng-container>
+        <ng-container *ngSwitchDefault="">
+          <h1 class="pi-mainTitle d-flex"><a class="pi-headreLink d-block" [routerLink]="'dashboard'">< </a>{{header.title}}</h1>
+          <h2 class="pi-mainSubtitle align-self-end ps-3 mb-3">{{header.caption}}</h2>
+        </ng-container>
+      </ng-container>
     </ng-container>
   </ng-container>
 </div>

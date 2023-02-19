@@ -24,8 +24,10 @@ export class DashboardUserComponent {
     if(data == null){
       this.getBooking();
     } else {
-      this.userBooking = JSON.parse(data);
+      this.bookingFormated = JSON.parse(data);
+      this.getCurrentMonthBookings();
     }
+
     this.getDatesForCalendar();
   }
   public currentDate : { day:number, month:string, year:number };//constructed
@@ -48,8 +50,13 @@ export class DashboardUserComponent {
       FECHA_DEVOLUCION: '',
     }
   ]
-  public bookingFormated : { user:string, material: {name:string , quantity:number}[], bDate:string, dDate:string }[] = [];
-  public currentBookingDates : { month:string, bDate:number, dDate:number }[] = []
+  public bookingFormated : any[] = [];
+  public currentBookingDates : any[] = [];
+
+  public calendarControl(isNext : boolean) : void
+  {
+
+  }
 
   public fillCalendar(monthName : string, year:number) :number[][] {
     //Máximo de días del mes
@@ -86,48 +93,93 @@ export class DashboardUserComponent {
       }
       calendar.push(row);
     }
-
-    console.log(calendar);
     return calendar;
+  }
+
+  public isEventDay(day : number) : boolean {
+    for(const booking of this.currentBookingDates){
+      if(day >= booking.bookingDay && day <= booking.dueDay){
+        return true;
+      }
+    }
+    return false
   }
 
   public getBooking() : void
   {
     this.loading = (this.userBooking[0].USUARIO_NOMBRE != '') ? false : true;
-    this.materialsService.getBookingMaterial().subscribe((response) => {
-      this.userBooking = response.reservas.filter((booking) => {return booking.USUARIO_NOMBRE === this.storageService.getUser().NOMBRE_USUARIO});
+    this.materialsService.getBookingMaterial().subscribe((bookingList) => {
+      this.userBooking = bookingList.reservas.filter((booking) => {
+          return booking.USUARIO_NOMBRE === this.storageService.getUser().NOMBRE_USUARIO
+      });
+
+      this.organizeBookings();
+      this.getCurrentMonthBookings();
       this.currentBookingDates = this.getDatesForCalendar();
+      localStorage.setItem('materialBookings',JSON.stringify(this.bookingFormated));
+      this.loading = false;
 
-      /* for(let booking of this.userBooking){
-        let groupBooking : { user:string, material: {name:string , quantity:number}[], bDate:string, dDate:string } | undefined;
+    });
+  }
 
-        for (let group of this.bookingFormated) {
-          if(
-            group.bDate === booking.FECHA_RESERVA &&
-            group.dDate === booking.FECHA_DEVOLUCION
-          ) {
-            groupBooking = group;
-            break;
-          }
+  public deleteBooking(bookingGroup : any[]) : void
+  {
+    let currentUser : any = localStorage.getItem('user');
+        currentUser = (currentUser) ? JSON.parse(currentUser).ID : currentUser;
+    for(const booking of bookingGroup){
+      this.materialsService.getMaterials().subscribe((material) => {
+        let materialId = material.materials.filter( m => m.NOMBRE === booking.MATERIAL_NOMBRE).pop()?.ID
+            materialId = (materialId != undefined) ? materialId : 0;
+          console.log(booking.MATERIAL_NOMBRE,materialId);
+            //No funciona
+            //this.materialsService.deleteBooking(parseInt(currentUser), materialId,booking.FECHA_RESERVA);
+      });
+    }
+    this.getBooking();
+  }
+
+  public getCurrentMonthBookings() : void {
+    let auxBookingFormated = this.bookingFormated;
+    for(const bookingGroup of auxBookingFormated){
+        //si se reservó este mes
+        if(this.monthToNumber(this.currentDate.month) == bookingGroup[0].FECHA_RESERVA.split('/')[1]){
+          const bookingDateNum = parseInt(bookingGroup[0].FECHA_RESERVA.split('/')[0]);
+
+          let dueDateNum = parseInt(bookingGroup[0].FECHA_DEVOLUCION.split('/')[0]);
+          //Si se devuelve el mes que viene
+          dueDateNum = (dueDateNum >= 31) ? 31 : dueDateNum;
+
+          this.currentBookingDates.push({bookingDay:bookingDateNum,dueDay:dueDateNum});
         }
-        if(groupBooking){
-          groupBooking.material.push({name:booking.MATERIAL_NOMBRE,quantity:booking.CANTIDAD});
-        } else {
-          this.bookingFormated.push({
-            user:booking.USUARIO_NOMBRE,
-            material:[{name:booking.MATERIAL_NOMBRE,quantity:booking.CANTIDAD}],
-            bDate:new Date(booking.FECHA_RESERVA).getDay().toString(),
-            dDate:new Date(booking.FECHA_DEVOLUCION).getDay().toString()
-          });
+        //Si se reservó el mes anterior pero se devuelve este
+        if(this.monthToNumber(this.currentDate.month) == bookingGroup[0].FECHA_DEVOLUCION.split('/')[1] &&
+           this.monthToNumber(this.currentDate.month) > bookingGroup[0].FECHA_RESERVA.split('/')[1])
+        {
+          this.currentBookingDates.push({bookingDay:1,dueDay:parseInt(bookingGroup[0].FECHA_DEVOLUCION.split('/')[0])});
+        }
+    }
+    console.log('currentMonthBookings',this.currentBookingDates,'TotalBookings',this.bookingFormated);
+  }
+
+  public organizeBookings() : void
+  {
+    for(const booking of this.userBooking){
+      const groupedBookings = [];
+      for(let i = 0 ; i < this.userBooking.length ; i++){
+
+        if(booking.FECHA_RESERVA === this.userBooking[i].FECHA_RESERVA &&
+           booking.FECHA_DEVOLUCION === this.userBooking[i].FECHA_DEVOLUCION &&
+           booking.MATERIAL_NOMBRE !== this.userBooking[i].MATERIAL_NOMBRE) {
+
+            groupedBookings.push(this.userBooking[i]);
+            this.userBooking.splice(i,1);
         }
       }
-      console.log(this.bookingFormated);
- */
-      });
-      localStorage.setItem('materialBookings',JSON.stringify(this.userBooking));
-      this.loading = false;
-    };
-
+      groupedBookings.push(booking);
+      this.bookingFormated.push(groupedBookings)
+    }
+    console.log('booking Formated', this.bookingFormated);
+  }
 
   public formatDate(date : string) : string
   {
@@ -169,7 +221,7 @@ export class DashboardUserComponent {
     const maxDays = new Date(year, this.monthToNumber(monthName) + 1, 0).getDate();
     return maxDays;
   }
-  //{month:string,bDate:number,dDate:number}[]
+
   public getDatesForCalendar() : {month:string,bDate:number,dDate:number}[]
   {
     let output = this.userBooking.map((reserva) => {
@@ -185,8 +237,6 @@ export class DashboardUserComponent {
         month: month, bDate: bookingDay, dDate: dueDay
       }
     });
-
-    console.log(output);
     return output;
   }
 

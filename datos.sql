@@ -42,12 +42,38 @@ COMMIT;
 -- Volcado de datos para la tabla `sala`
 --
 
-INSERT INTO `sala` (`NOMBRE_SALA`, `FECHA_RESERVA`, `ESTADO`, `ID_USUARIO`) VALUES
-(2, '2023-02-25 15:00:00', 'Ocupada', 8),
-(4, '2023-02-20 10:57:16', 'Ocupada', 7),
-(7, '2023-03-09 09:59:08', 'Ocupada', 6),
-(12, '2023-02-15 09:57:16', 'Ocupada', 9),
-(56, '2024-02-25 09:57:00', 'Ocupada', 4);
+INSERT INTO `sala` (`NUMERO_SALA`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6);
+COMMIT;
+
+--
+-- Volcado de datos para la tabla `reservaSala`
+--
+
+INSERT INTO `reserva_sala` (`NUMERO_SALA`, `FECHA_RESERVA`, `HORARIO`, `ID_USUARIO`) VALUES
+(2, '2023-02-25', 'Mañana', 8),
+(4, '2023-02-20', 'Tarde', 7),
+(1, '2023-03-09', 'Mañana', 6),
+(6, '2023-02-15', 'Mañana', 9),
+(3, '2024-02-25', 'Tarde', 4);
+COMMIT;
+
+--
+-- Volcado de datos para la tabla `total_reservados`
+--
+
+INSERT INTO `total_reservas` (`NOMBRE`, `TOTAL`) VALUES
+('Cuerda', 0),
+('Pico', 0),
+('Caso', 0),
+('Mosqueton', 0),
+('Arnes', 0),
+('Asegurador', 0);
 COMMIT;
 
 --
@@ -68,9 +94,9 @@ COMMIT;
 --
 
 INSERT INTO `reserva_material` (`CANTIDAD`, `FECHA_RESERVA`, `FECHA_DEVOLUCION`, `ESTADO`, `ID_USUARIO`, `ID_MATERIAL`) VALUES
-(2, '2023-02-19', '2023-02-26', 'Reservado', 2, 1),
-(6, '2023/02/15', '2023-02-17', 'Reservado', 2, 6),
-(5, '2023/02/12', '2023-02-15', 'Reservado', 4, 5),
+(45, '2023-02-19', '2023-02-26', 'Reservado', 2, 1),
+(232, '2023/02/15', '2023-02-17', 'Reservado', 2, 6),
+(345, '2023/02/12', '2023-02-15', 'Reservado', 4, 5),
 (4, '2023-02-05', '2023-02-09', 'Reservado', 7, 1),
 (4, '2023-02-19', '2023-02-22', 'Reservado', 7, 1),
 (4, '2023-02-19', '2023-02-22', 'Reservado', 7, 2),
