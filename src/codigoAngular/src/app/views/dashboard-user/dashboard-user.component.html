@@ -77,6 +77,7 @@
 
   <!-- tercera columna -->
   <div class="col-lg-3 col-md-12 pt-4">
+    <!-- userProfile -->
     <div class="card pi-card">
       <table>
         <h3 class="pi-force-serif pi-serifSmall">Perfil</h3>
@@ -86,11 +87,12 @@
         </div>
       </table>
     </div>
+<!-- calendar -->
     <div class="card pi-card pi-calendar">
       <div class="pi-card-header text-center">Calendario</div>
       <div class="d-flex justify-content-between">
-        <div class="pi-force-serif pi-serifSmall pi-month">Julio</div>
-        <div class="pi-force-serif pi-serifSmall">2023</div>
+        <div class="pi-force-serif pi-serifSmall pi-month">{{currentCalendar.month}}</div>
+        <div class="pi-force-serif pi-serifSmall">{{currentCalendar.year}}</div>
       </div>
       <table class="mt-1">
         <thead>
@@ -106,20 +108,22 @@
         </thead>
         <tbody>
           <tr *ngFor="let week of calendarNums">
-            <td *ngFor="let day of week" class="pi-force-serif text-center pi-numbers-calendar m-1 py-2">
-              <ng-container *ngIf="day == currentDay">
-                <ng-container *ngIf="day > 10 && day < 20; else elseBlock">
-                  <span class="pi-eventDay p-1">
+            <ng-container *ngFor="let day of week">
+              <ng-container *ngIf="day > 10 && day < 20; else elseBlock">
+                <td class="pi-force-serif text-center pi-numbers-calendar m-1 py-2">
+                  <span class="pi-eventDay p-1" *ngIf="day !== 0">
                     {{ day }}
                   </span>
-                </ng-container>
-                <ng-template #elseBlock>
-                  <span class="p-1">
-                    {{ day }}
-                  </span>
-                </ng-template>
+                </td>
               </ng-container>
-            </td>
+              <ng-template #elseBlock>
+                <td class="pi-force-serif text-center pi-numbers-calendar m-1 py-2">
+                  <span class="p-1" *ngIf="day !== 0">
+                    {{ day }}
+                  </span>
+                </td>
+              </ng-template>
+            </ng-container>
           </tr>
         </tbody>
       </table>
@@ -152,16 +156,17 @@
       </div>
         <div class="modal-body" style="padding-top: 0px;" *ngSwitchCase="false">
           <div class="accordion accordion-flush" id="accordionFlushExample">
+            <!-- <pre>{{userBooking | json}}</pre> -->
             <div class="accordion-item" *ngFor="let booking of userBooking;let i = index">
               <h2 class="accordion-header" id="flush-heading{{i}}">
                 <span class="pi-light pi-smallerTxt pi-modalDate">{{formatDate(booking.FECHA_RESERVA)}} -
                   {{formatDate(booking.FECHA_DEVOLUCION)}}</span>
                 <button class="accordion-button collapsed pi-modalBooking-heads" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapse-3" aria-expanded="false" aria-controls="flush-collapseOne">
+                [attr.data-bs-target]="'#collapse-'+i" aria-expanded="false" aria-controls="flush-collapseOne">
                   Reserva {{i}}
                 </button>
               </h2>
-              <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+              <div id="collapse-{{i}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                   <ul class="pi-cardList">

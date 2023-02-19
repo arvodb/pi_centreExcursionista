@@ -15,7 +15,8 @@ const routes: Routes = [
   {path:'bookingMaterial',component: BookingMaterialComponent},
   {path:'calendar',component:EventsCalendarComponent},
   {path:'main',component:MainUserComponent},
-  {path:'logout',component:AppComponent}
+  {path:'logout',component:AppComponent},
+  { path: '**', pathMatch: 'full', component:  DashboardUserComponent },
 ];
 
 @NgModule({

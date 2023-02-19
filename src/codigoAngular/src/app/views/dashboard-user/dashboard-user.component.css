@@ -114,6 +114,6 @@
 }
 .pi-eventDay {
  background-color: var(--font-color-lightOnCard);
- border-radius: 5px;
+ border-radius: 0.5em;
  color: var(--btn-color-secoundaryd);
 }
