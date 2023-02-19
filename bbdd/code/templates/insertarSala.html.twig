@@ -1,0 +1,23 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+	<div id="layoutSidenav_content">
+		<div class="col align-self-center">
+			<main>
+				<div id="formulario">
+					<form method="post" action="">
+						<div>
+							<h2>Nueva Sala</h2>
+						</div>
+						<br>
+						<label for="numeroSala">Numero de Sala</label>
+						<div>
+							<input placeholder="Numero de sala..." class="formularioInput" name="numeroSala" type="number" size="30" value="" require/>
+						</div>
+						<br>
+						<input class="botonInput" type="submit" name="submit" value="Insertar"/>
+					</form>
+				</div>
+			</div>
+		</main>
+	{% endblock %}

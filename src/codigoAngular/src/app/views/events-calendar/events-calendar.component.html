@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="pi-infoContainer">
+      <div class="pi-listInfo" *ngFor="let info of calendarInfo">
+        <div class="d-flex justify-content-between pb-2">
+          <div class="pi-infoType ">{{info.type}}</div>
+          <div class="pi-smallerTxt ">12 de Julio de 2023</div>
+        </div>
+        <div class="pi-infoTitular pb-2">{{info.titular}}</div>
+        <div class="pi-txt-smaller pb-2">{{info.body}}</div>
+        <div class="d-flex justify-content-end">
+          <a href="#" class="btn pi-buttonGreen pi-smallBtn">Apuntarse</a>
+        </div>
+        <hr class="pi-hrOnCard">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card pi-card pi-calendar pi-bigCalendar">
+      <div class="pi-card-header text-center">Calendario</div>
+      <div class="d-flex justify-content-between">
+        <div class="pi-force-serif pi-serifSmall pi-month">Julio</div>
+        <div class="pi-force-serif pi-serifSmall">2023</div>
+      </div>
+      <table class="mt-1 pi-tableCalendar">
+        <thead>
+          <tr>
+            <th class="text-center pi-numbers-calendar pi-header-calendar">L</th>
+            <th class="text-center pi-numbers-calendar pi-header-calendar">M</th>
+            <th class="text-center pi-numbers-calendar pi-header-calendar">M</th>
+            <th class="text-center pi-numbers-calendar pi-header-calendar">J</th>
+            <th class="text-center pi-numbers-calendar pi-header-calendar">V</th>
+            <th class="text-center pi-numbers-calendar pi-header-calendar">S</th>
+            <th class="text-center pi-numbers-calendar pi-header-calendar">D</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let week of calendarNums">
+            <td *ngFor="let day of week" class="pi-force-serif text-center pi-numbers-calendar m-1 py-2">
+              {{ day }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row pt-2">
+        <div class="col-6 px-3 d-flex justify-content-start align-items-end" style="height:100%">
+          <a href="#" class="btn pi-buttonGreen">Junio</a>
+        </div>
+        <div class="col-6 px-3 d-flex justify-content-end align-items-end" style="height:100%">
+          <a href="#" class="btn pi-buttonGreen">Agosto</a>
+        </div>
+      </div>
+    </div>
+    <div style="height:100%">
+      <a class="btn pi-buttonGreen" [routerLink]="'/dashboard'">Volver</a>
+    </div>
+  </div>
+</div>

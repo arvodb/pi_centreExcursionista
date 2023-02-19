@@ -1,0 +1,21 @@
+.pi-mainTitle{
+  font-family: var(--font-family-serif);
+  font-weight: 800;
+  font-size: var(--font-size-header-h1);
+}
+.pi-mainSubtitle{
+  font-family: var(--font-family-sansSerif);
+  font-size: var(--font-size-header-h2);
+  text-transform:uppercase;
+  font-weight: 400;
+  color: var(--font-color-remarkable);
+}
+.pi-headreLink {
+  text-decoration: none!important;
+  color:var(--main-color-darkGreen)!important;
+  transition: 500ms;
+}
+a:hover {
+  color: var(--main-color-lightGreen)!important;
+  margin-right: 20px;
+}

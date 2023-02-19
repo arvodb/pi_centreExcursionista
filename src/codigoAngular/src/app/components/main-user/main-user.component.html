@@ -1,0 +1,11 @@
+<div class="pt-3">
+  <app-nav
+  (reset)="sendReset()"
+  ></app-nav>
+</div>
+<div class="container">
+  <app-header
+  [currentRoute]="currentRoute"
+  ></app-header>
+  <router-outlet></router-outlet>
+</div>

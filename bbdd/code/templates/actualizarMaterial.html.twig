@@ -1,0 +1,33 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+	<div id="layoutSidenav_content">
+		<div class="col align-self-center">
+			<main>
+				<div id="formulario">
+					<form method="post" action="">
+						<div>
+							<h2>Actualizar Material</h2>
+						</div>
+						<br>
+						<label for="nombre">Nombre</label>
+						<div>
+							<input placeholder="Nombre..." class="formularioInput" name="nombre" type="text" maxlength="30" size="30" value="{{nombre}}" require/>
+						</div>
+						<br>
+						<label for="stock">Stock</label>
+						<div>
+							<input placeholder="Stock..." class="formularioInput" name="stock" type="number" size="30" value="{{stock}}" require/>
+						</div>
+						<br>
+						<label for="armario">Armario</label>
+						<div>
+							<input placeholder="Armario..." class="formularioInput" name="armario" type="number" size="30" value="{{armario}}" require/>
+						</div>
+						<br>
+						<input class="botonInput" type="submit" name="submit" value="Actualizar"/>
+					</form>
+				</div>
+			</div>
+		</main>
+	{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+	<div id="layoutSidenav_content">
+		<div class="col align-self-center">
+			<main>
+				<div id="formulario">
+					<form method="post" action="">
+						<div>
+							<h2>Nueva Reserva de Sala</h2>
+						</div>
+						<br>
+                        <label for="numeroSala">Sala</label>
+						<div>
+							<select class="formularioInput" name="numeroSala" require>
+								{% for task in salas %}
+									<option value="{{task.id}}">{{task.id}}</option>
+								{% endfor %}
+							</select>
+						</div>
+                        <br>
+                        <label for="idUsuario">Usuario</label>
+						<div>
+							<select class="formularioInput" name="idUsuario" require>
+								{% for task in usuarios %}
+									<option value="{{task.id}}">{{task.nombreUsuario}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<br>
+						<label for="fechaReserva">Fecha de la Reserva</label>
+						<div>
+							<input placeholder="Fecha de la reserva..." class="formularioInput" name="fechaReserva" type="date" value="" require/>
+						</div>
+                        <br>
+                        <label for="horario">Horario</label>
+						<div>
+							<select class="formularioInput" name="horario" require>
+									<option value="Mañana">Mañana</option>
+                                    <option value="Tarde">Tarde</option>
+							</select>
+						</div>
+						<br>
+						<input class="botonInput" type="submit" name="submit" value="Insertar"/>
+					</form>
+				</div>
+			</div>
+		</main>
+	{% endblock %}
