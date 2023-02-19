@@ -93,6 +93,32 @@
 .pi-calendar{
   margin-top:40px;
 }
+/* @media (max-width: 1200px) {
+  .pi-calendar {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--bg-card);
+  }
+  .pi-calendar > * {
+    letter-spacing: auto;
+    font-size: 11px;
+  }
+}
+@media (max-width: 768px){
+  .pi-calendar {
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--bg-card);
+  }
+  .pi-calendar > * {
+    letter-spacing: auto;
+    font-size: 11px;
+  }
+} */
 .pi-load{
   position: fixed;
   top: 0;
@@ -110,7 +136,7 @@
   height: 3rem;
 }
 .pi-eventDay {
- background-color: var(--font-color-lightOnCard);
+ background-color: var(--btn-color-callToAction-hover);
  border-radius: 0.5em;
  color: var(--btn-color-secoundaryd);
 }

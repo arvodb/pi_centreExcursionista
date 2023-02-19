@@ -120,6 +120,7 @@ body{
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* agrega una sombra de 10px con un desenfoque de 0px en horizontal y 0px en vertical, con un color semi-transparente */
   background-color: var(--bg-card);
 }
+
 .pi-force-serif{
   font-family: var(--font-family-serif)!important;
 }

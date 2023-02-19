@@ -1,6 +1,5 @@
 <ng-container [ngSwitch]="loading">
 
-
 <div class="pi-load" *ngSwitchCase="true">
   <div class="spinner-grow text-light" role="status">
     <span class="visually-hidden"></span>
@@ -9,24 +8,27 @@
 <ng-container *ngSwitchCase="false">
 <div class="row pt-1 pi-containerDashboard d-flex align-items-stretch">
   <!-- primera columna -->
-  <div class="col-lg-4 col-md-6 pt-4">
+  <div class="col-xl-4 col-lg-3 col-md-6 pt-4">
     <div class="card pi-card" style="height:100%">
       <div class="pi-cardImg">
         <img class="pi-img pi-mainImg" src="assets/326966.jpg" alt="">
       </div>
-      <div class="mx-1">
-        <h3 class="pi-cardTitleSerif">Únete a la expedición</h3>
-        <p class="pi-light">Reserva tu material para la próxima expedición</p>
-      </div>
       <div class="d-flex align-items-end" style="height:100%">
-        <a href="#" class="btn pi-buttonCard" [routerLink]="'/bookingMaterial'">Comienza la expedición</a>
+        <div class="mx-1">
+          <h3 class="pi-cardTitleSerif">Únete a la expedición</h3>
+          <p class="pi-light">Reserva tu material para la próxima expedición</p>
+
+        <div class="d-block">
+          <a href="#" class="btn pi-buttonCard" [routerLink]="'/bookingMaterial'">Comienza la expedición</a>
+        </div>
+      </div>
       </div>
     </div>
   </div>
   <!-- segunda columna -->
-  <div class="col-lg-5 col-md-6 pt-4">
+  <div class="col-xl-5 col-lg-5 col-md-6">
     <div class="row d-flex align-items-stretch" style="margin-bottom: 20px;">
-      <div class="col-md-7">
+      <div class="col-12 col-sm-6 pt-5">
         <div class="card pi-card pi-bannerCard" style="height:100%">
           <div class="pi-card-header text-center">Noticias</div>
           <div class="pi-txtCardContainer">
@@ -42,21 +44,26 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5 d-flex">
+      <div class="col-12 col-sm-6 d-flex pt-5">
         <div class="card pi-card pi-bannerCard" style="height:100%;width: 100%;">
           <div class="pi-card-header text-center">Reservas</div>
           <div class="pi-txtCardContainer">
-            <h3 class="pi-cardTitleSans">12 de Julio</h3>
-            <p>
-            <ul class="pi-cardList">
-              <li class="pi-txt-smaller pi-light pi-list">1x Cuerdas</li>
-              <li class="pi-txt-smaller pi-light pi-list">2x Pies de gato</li>
-            </ul>
-            <hr class="pi-hrOnCard">
+            <ng-container *ngFor="let bookingGroup of bookingFormated; let i = index">
+                <ng-container *ngIf="i < 2">
+                  <h3 class="pi-cardTitleSans">{{formatDate(bookingGroup[0].FECHA_RESERVA)}}</h3>
+                  <p>
+                    <ul class="pi-cardList">
+                      <li class="pi-txt-smaller pi-light pi-list" *ngFor="let booking of bookingGroup">
+                        {{booking.CANTIDAD}}x {{booking.MATERIAL_NOMBRE}}
+                      </li>
+                    </ul>
+                    <hr class="pi-hrOnCard" *ngIf="i === 0">
+                </ng-container>
+              </ng-container>
           </div>
-          <div class="pi-txtCardContainer">
-            <p class="pi-txt-smaller pi-light mx-2">No hay más reservas</p>
-          </div>
+              <div class="pi-txtCardContainer" *ngIf="bookingFormated.length < 1">
+                <p class="pi-txt-smaller pi-light mx-2">No hay más reservas</p>
+              </div>
           <div class="d-flex align-items-end" style="height:100%">
             <a href="#" class="btn pi-buttonGreen align-self-end" data-bs-toggle="modal" data-bs-target="#exampleModal">ver todo</a>
           </div>
@@ -76,72 +83,71 @@
   </div>
 
   <!-- tercera columna -->
-  <div class="col-lg-3 col-md-12 pt-4">
-    <!-- userProfile -->
-    <div class="card pi-card">
-      <table>
-        <h3 class="pi-force-serif pi-serifSmall">Perfil</h3>
-        <p class="pi-txt-smaller pi-light">Edita tus datos</p>
-        <div class="d-flex align-items-end" style="height:100%">
-          <a href="#" class="btn pi-buttonGreen">ver perfil</a>
+  <div class="col-xl-3 col-lg-4 col-md-12 pt-2">
+    <div class="row">
+      <!-- calendar -->
+      <div class="col-sm-12 col-md-6 col-lg-12">
+        <div class="card pi-card pi-calendar">
+          <div class="pi-card-header text-center">Calendario</div>
+          <div class="d-flex justify-content-between">
+            <div class="pi-force-serif pi-serifSmall pi-month">{{currentCalendar.month}}</div>
+            <div class="pi-force-serif pi-serifSmall">{{currentCalendar.year}}</div>
+          </div>
+          <table class="mt-1">
+            <thead>
+              <tr>
+                <th class="text-center pi-numbers-calendar pi-header-calendar">L</th>
+                <th class="text-center pi-numbers-calendar pi-header-calendar">M</th>
+                <th class="text-center pi-numbers-calendar pi-header-calendar">M</th>
+                <th class="text-center pi-numbers-calendar pi-header-calendar">J</th>
+                <th class="text-center pi-numbers-calendar pi-header-calendar">V</th>
+                <th class="text-center pi-numbers-calendar pi-header-calendar">S</th>
+                <th class="text-center pi-numbers-calendar pi-header-calendar">D</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let week of calendarNums">
+                <ng-container *ngFor="let day of week">
+                    <td class="pi-force-serif text-center pi-numbers-calendar m-1 py-2">
+                      <span class="p-1" *ngIf="day !== 0" [class.pi-eventDay]="isEventDay(day)">
+                        {{ day }}
+                      </span>
+                    </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row pt-2">
+            <div class="col-6 px-3 d-flex justify-content-start align-items-end" style="height:100%">
+              <a (click)="calendarControl(false)" href="#" class="btn pi-smallBtn pi-buttonGreen"><</a>
+            </div>
+            <div class="col-6 px-3 d-flex justify-content-end align-items-end" style="height:100%">
+              <a (click)="calendarControl(true)" href="#" class="btn pi-smallBtn pi-buttonGreen">></a>
+            </div>
+          </div>
         </div>
-      </table>
-    </div>
-<!-- calendar -->
-    <div class="card pi-card pi-calendar">
-      <div class="pi-card-header text-center">Calendario</div>
-      <div class="d-flex justify-content-between">
-        <div class="pi-force-serif pi-serifSmall pi-month">{{currentCalendar.month}}</div>
-        <div class="pi-force-serif pi-serifSmall">{{currentCalendar.year}}</div>
-      </div>
-      <table class="mt-1">
-        <thead>
-          <tr>
-            <th class="text-center pi-numbers-calendar pi-header-calendar">L</th>
-            <th class="text-center pi-numbers-calendar pi-header-calendar">M</th>
-            <th class="text-center pi-numbers-calendar pi-header-calendar">M</th>
-            <th class="text-center pi-numbers-calendar pi-header-calendar">J</th>
-            <th class="text-center pi-numbers-calendar pi-header-calendar">V</th>
-            <th class="text-center pi-numbers-calendar pi-header-calendar">S</th>
-            <th class="text-center pi-numbers-calendar pi-header-calendar">D</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let week of calendarNums">
-            <ng-container *ngFor="let day of week">
-              <ng-container *ngIf="day > 10 && day < 20; else elseBlock">
-                <td class="pi-force-serif text-center pi-numbers-calendar m-1 py-2">
-                  <span class="pi-eventDay p-1" *ngIf="day !== 0">
-                    {{ day }}
-                  </span>
-                </td>
-              </ng-container>
-              <ng-template #elseBlock>
-                <td class="pi-force-serif text-center pi-numbers-calendar m-1 py-2">
-                  <span class="p-1" *ngIf="day !== 0">
-                    {{ day }}
-                  </span>
-                </td>
-              </ng-template>
-            </ng-container>
-          </tr>
-        </tbody>
-      </table>
-      <div class="row pt-2">
-        <div class="col-6 px-3 d-flex justify-content-start align-items-end" style="height:100%">
-          <a href="#" class="btn pi-smallBtn pi-buttonGreen"><</a>
-        </div>
-        <div class="col-6 px-3 d-flex justify-content-end align-items-end" style="height:100%">
-          <a href="#" class="btn pi-smallBtn pi-buttonGreen">></a>
+        <div class="d-flex align-items-end pb-3">
+          <a href="#" class="btn pi-buttonGreen" [routerLink]="'/calendar'">ver calendario</a>
         </div>
       </div>
+      <!-- userProfile -->
+      <div class="col-sm-12 col-md-6 col-lg-12">
+        <div class="card pi-card pt-4">
+          <table>
+            <h3 class="pi-force-serif pi-serifSmall">Perfil</h3>
+            <p class="pi-txt-smaller pi-light">Edita tus datos</p>
+            <div class="d-flex align-items-end" style="height:100%">
+              <a href="#" class="btn pi-buttonGreen">ver perfil</a>
+            </div>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="d-flex align-items-end">
-      <a href="#" class="btn pi-buttonGreen" [routerLink]="'/calendar'">ver calendario</a>
-    </div>
+
+
   </div>
 </div>
-<!-- MOODAL RESERVAS -->
+<!-- MODAL RESERVAS -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modal-Reservas" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered pi-modal-content">
     <div class="modal-content">
@@ -156,26 +162,25 @@
       </div>
         <div class="modal-body" style="padding-top: 0px;" *ngSwitchCase="false">
           <div class="accordion accordion-flush" id="accordionFlushExample">
-            <!-- <pre>{{userBooking | json}}</pre> -->
-            <div class="accordion-item" *ngFor="let booking of userBooking;let i = index">
+            <div class="accordion-item" *ngFor="let bookingGroup of bookingFormated;let i = index">
               <h2 class="accordion-header" id="flush-heading{{i}}">
-                <span class="pi-light pi-smallerTxt pi-modalDate">{{formatDate(booking.FECHA_RESERVA)}} -
-                  {{formatDate(booking.FECHA_DEVOLUCION)}}</span>
+                <span class="pi-light pi-smallerTxt pi-modalDate">
+                    {{formatDate(bookingGroup[0].FECHA_RESERVA)}} -
+                    {{formatDate(bookingGroup[0].FECHA_DEVOLUCION)}}
+                </span>
                 <button class="accordion-button collapsed pi-modalBooking-heads" type="button" data-bs-toggle="collapse"
                 [attr.data-bs-target]="'#collapse-'+i" aria-expanded="false" aria-controls="flush-collapseOne">
-                  Reserva {{i}}
+                  Reserva del {{formatDate(bookingGroup[0].FECHA_RESERVA)}}
                 </button>
               </h2>
               <div id="collapse-{{i}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                   <ul class="pi-cardList">
-
-                    <li class="pi-txt-smaller pi-light pi-list">{{booking.CANTIDAD}}x {{booking.MATERIAL_NOMBRE}}</li>
-                    <li class="pi-txt-smaller pi-light pi-list">2x Pies de gato</li>
+                    <li class="pi-txt-smaller pi-light pi-list" *ngFor="let booking of bookingGroup">{{booking.CANTIDAD}}x {{booking.MATERIAL_NOMBRE}}</li>
                   </ul>
                   <div class="d-flex justify-content-end">
-                    <a href="#" class="btn pi-buttonGreen pi-buttonInsideCollapse align-self-end">devolver</a>
+                    <a (click)="deleteBooking(bookingGroup)" class="btn pi-buttonGreen pi-buttonInsideCollapse align-self-end">devolver</a>
                   </div>
                 </div>
               </div>
@@ -183,7 +188,7 @@
           </div>
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn pi-buttonCard">Realizar una reserva</button>
+        <button type="button" [routerLink]="'/bookingMaterial'" class="btn pi-buttonCard">Realizar una reserva</button>
       </div>
     </div>
   </div>
