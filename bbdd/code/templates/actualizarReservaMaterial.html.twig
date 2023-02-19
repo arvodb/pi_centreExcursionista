@@ -1,0 +1,59 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+	<div id="layoutSidenav_content">
+		<div class="col align-self-center">
+			<main>
+				<div id="formulario">
+					<form method="post" action="">
+						<div>
+							<h2>Actualizar Reserva de Material</h2>
+						</div>
+						<br>
+                        <label for="idMaterial">Material</label>
+						<div>
+							<select class="formularioInput" name="idMaterial" require>
+								{% for task in materiales %}
+									<option value="{{task.id}}">{{task.nombre}}</option>
+								{% endfor %}
+							</select>
+						</div>
+                        <br>
+                        <label for="idUsuario">Usuario</label>
+						<div>
+							<select class="formularioInput" name="idUsuario" require>
+								{% for task in usuarios %}
+									<option value="{{task.id}}">{{task.nombreUsuario}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<br>
+						<label for="cantidad">Cantidad</label>
+						<div>
+							<input placeholder="Cantidad..." class="formularioInput" name="cantidad" type="number" size="30" value="{{cantidad}}" require/>
+						</div>
+						<br>
+						<label for="fechaReserva">Fecha de la Reserva</label>
+						<div>
+							<input placeholder="Fecha de la reserva..." class="formularioInput" name="fechaReserva" type="date" value="" require/>
+						</div>
+                        <br>
+						<label for="fechaDevolucion">Fecha de la Devolucion</label>
+						<div>
+							<input placeholder="Fecha de la devolucion..." class="formularioInput" name="fechaDevolucion" type="date" value="" require/>
+						</div>
+                        <br>
+                        <label for="estado">Estado</label>
+						<div>
+							<select class="formularioInput" name="estado" require>
+									<option value="Reservado">Reservado</option>
+                                    <option value="Devuelto">Devuelto</option>
+							</select>
+						</div>
+						<br>
+						<input class="botonInput" type="submit" name="submit" value="Actualizar"/>
+					</form>
+				</div>
+			</div>
+		</main>
+	{% endblock %}

@@ -1,7 +1,7 @@
 
 import { Component, Output, EventEmitter } from '@angular/core';
 import { UserList } from 'src/app/interfaces/usersInterface';
-import { MaterialsService } from 'src/app/services/materials.service';
+import { UsersService } from 'src/app/services/users.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 
@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class LoginComponent {
 
-  constructor(public materialsService : MaterialsService,private storageService : StorageService) { }
+  constructor(public UsersService :  UsersService,private storageService : StorageService) { }
 
   @Output() log = new EventEmitter<boolean>()
 
@@ -40,7 +40,7 @@ export class LoginComponent {
 
   public validateUser() : void
   {
-    this.materialsService.getUsers().subscribe((response) => {
+    this.UsersService.getUsers().subscribe((response) => {
       console.log(response.userList);
       let existName = response.userList.filter((user) => (user.NOMBRE_USUARIO === this.userName));
       let existPassword = response.userList.filter((user)=>(user.NOMBRE_USUARIO === this.userName && user.CONTRASEÑA === this.passWord));

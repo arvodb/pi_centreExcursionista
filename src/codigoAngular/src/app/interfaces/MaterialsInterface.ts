@@ -1,5 +1,5 @@
 export interface Materials {
-  material: Material[];
+  materials: Material[];
 }
 
 export interface Material {

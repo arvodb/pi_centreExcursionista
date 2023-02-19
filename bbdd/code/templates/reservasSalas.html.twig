@@ -1,0 +1,52 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div class="container-fluid px-4">
+            <h1 class="mt-4">RESERVAS DE SALAS</h1>
+				<div class="card mb-4">
+					<div class="card-header">
+						<i class="fas fa-table me-1"></i>
+						
+					</div>
+					<div class="card-body">
+						<table id="datatablesSimple">
+							<thead>
+								<tr>
+									<th>Numero de Sala</th>
+									<th>Nombre de Usuario</th>
+									<th>Fecha de Reserva</th>
+									<th>Horario</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th>Numero de Sala</th>
+									<th>Nombre de Usuario</th>
+									<th>Fecha de Reserva</th>
+									<th>Horario</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</tfoot>
+							<tbody>
+								{% for task in data %}
+									<tr>
+										<td>{{task.idSala.id}}</td>
+										<td>{{task.idUsuario.nombreUsuario}}</td>
+										<td>{{task.fechaReserva|date("d/m/Y")}}</td>
+										<td>{{task.horario}}</td>
+                                        <td><a href="/actualizarReservaSala/{{task.idUsuario.id}}/{{task.idSala.id}}/{{task.fechaReserva}}/{{task.horario}}">Actualizar</a></td>
+                                        <td><a href="/eliminarReservaSala/{{task.idUsuario.id}}/{{task.idSala.id}}/{{task.fechaReserva}}/{{task.horario}}">Eliminar</a></td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</main>
+	{% endblock %}

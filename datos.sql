@@ -68,9 +68,9 @@ COMMIT;
 --
 
 INSERT INTO `reserva_material` (`CANTIDAD`, `FECHA_RESERVA`, `FECHA_DEVOLUCION`, `ESTADO`, `ID_USUARIO`, `ID_MATERIAL`) VALUES
-(45, '2023-02-19', '2023-02-26', 'Reservado', 2, 1),
-(232, '2023/02/15', '2023-02-17', 'Reservado', 2, 6),
-(345, '2023/02/12', '2023-02-15', 'Reservado', 4, 5),
+(2, '2023-02-19', '2023-02-26', 'Reservado', 2, 1),
+(6, '2023/02/15', '2023-02-17', 'Reservado', 2, 6),
+(5, '2023/02/12', '2023-02-15', 'Reservado', 4, 5),
 (4, '2023-02-05', '2023-02-09', 'Reservado', 7, 1),
 (4, '2023-02-19', '2023-02-22', 'Reservado', 7, 1),
 (4, '2023-02-19', '2023-02-22', 'Reservado', 7, 2),

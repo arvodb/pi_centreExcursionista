@@ -1,0 +1,53 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div class="container-fluid px-4">
+            <h1 class="mt-4">USUARIOS</h1>
+				<div class="card mb-4">
+					<div class="card-header">
+						<i class="fas fa-table me-1"></i></div>
+					<div class="card-body">
+						<table id="datatablesSimple">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Nombre de Usuario</th>
+									<th>Contraseña</th>
+									<th>Correo</th>
+									<th>Privilegio</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th>Id</th>
+									<th>Nombre de Usuario</th>
+									<th>Contraseña</th>
+									<th>Correo</th>
+									<th>Privilegio</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</tfoot>
+							<tbody>
+								{% for task in data %}
+									<tr>
+										<td>{{task.id}}</td>
+										<td>{{task.nombreUsuario}}</td>
+										<td>{{task.contrasena}}</td>
+										<td>{{task.correo}}</td>
+										<td>{{task.privilegio}}</td>
+                                        <td><a href="/actualizarUsuario/{{task.id}}">Actualizar</a></td>
+                                        <td><a href="/eliminarUsuario/{{task.id}}">Eliminar</a></td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</main>
+	{% endblock %}

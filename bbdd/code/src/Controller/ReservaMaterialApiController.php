@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/api', name: 'api_')]
 class ReservaMaterialApiController extends AbstractController
 {
     #[Route('/reservaMaterial', name: 'reservaMaterial_crud_get_all', methods: ['GET'])]
@@ -30,11 +31,11 @@ class ReservaMaterialApiController extends AbstractController
                 "FECHA_DEVOLUCION" => $reserva->getFechaDevolucion()->format('d/m/Y')
             ];
         }
-        $response = [ 'reservas' => $data ];
-        return $this->json($response);
+        $result = ['reservas' => $data];
+        return $this->json($result);
     }
 
-    #[Route('/reservaMaterial/{id}/{id2}/{fecha}', name: 'reservaMaterial_crud_get', methods: ['GET'])]
+/*     #[Route('/reservaMaterial/{id}/{id2}/{fecha}', name: 'reservaMaterial_crud_get', methods: ['GET'])]
     public function index2(int $id, int $id2, String $fecha, EntityManagerInterface $em): JsonResponse
     {
         $reservas = $em->getRepository(ReservaMaterial::class)->findAll();
@@ -53,7 +54,7 @@ class ReservaMaterialApiController extends AbstractController
                 return $this->json([$data]);
             }
         }
-    }
+    } */
 
     #[Route('/reservaMaterial', name: 'reservaMaterial_crud_post', methods: ['POST'])]
     public function index3(Request $request, EntityManagerInterface $em, UsuarioRepository $usuarioRepository, MaterialRepository $materialRepository): JsonResponse
@@ -79,8 +80,10 @@ class ReservaMaterialApiController extends AbstractController
     #[Route('/reservaMaterial/{id}/{id2}/{fecha}', name: 'reservaMaterial_crud_delete', methods: ['DELETE'])]
     public function index4(int $id, int $id2, String $fecha, EntityManagerInterface $em): JsonResponse
     {
-        $reservas = $em->getRepository(ReservaMaterial::class)->findAll($id);
+        $reservas = $em->getRepository(ReservaMaterial::class)->findAll();
+        
         foreach ($reservas as $reserva) {
+            
             $fechaBuena = date('d/m/Y', strtotime($reserva->getFechaReserva()));
             $fecha = str_replace("-","/",$fecha);
             if ($reserva->getIdUsuario()->getId() == $id && $reserva->getIdMaterial()->getId() == $id2 && $fechaBuena  == $fecha) {
@@ -95,7 +98,7 @@ class ReservaMaterialApiController extends AbstractController
     #[Route('/reservaMaterial/{id}/{id2}/{fecha}', name: 'reservaMaterial_crud_put', methods: ['PUT'])]
     public function index5(int $id, int $id2, String $fecha, Request $request, EntityManagerInterface $em): JsonResponse
     {
-        $reservas = $em->getRepository(ReservaMaterial::class)->findAll($id);
+        $reservas = $em->getRepository(ReservaMaterial::class)->findAll();
         foreach ($reservas as $reserva) {
             $fechaBuena = date('d/m/Y', strtotime($reserva->getFechaReserva()));
             $fecha = str_replace("-","/",$fecha);

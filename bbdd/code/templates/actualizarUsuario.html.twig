@@ -1,0 +1,41 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+	<div id="layoutSidenav_content">
+		<div class="col align-self-center">
+			<main>
+				<div id="formulario">
+					<form method="post" action="">
+						<div>
+							<h2>Actualizar Usuario</h2>
+						</div>
+						<br>
+						<label for="nombre">Nombre</label>
+						<div>
+							<input placeholder="Nombre..." class="formularioInput" name="nombre" type="text" maxlength="30" size="30" value="{{nombre}}" require/>
+						</div>
+						<br>
+						<label for="contrasena">Contraseña</label>
+						<div>
+							<input placeholder="Contraseña..." class="formularioInput" name="contrasena" type="text" maxlength="30" size="30" value="{{contrasena}}" require/>
+						</div>
+						<br>
+						<label for="correo">Correo</label>
+						<div>
+							<input placeholder="Correo..." class="formularioInput" name="correo" type="text" maxlength="30" size="30" value="{{correo}}" require/>
+						</div>
+						<br>
+						<label for="privilegio">Privilegio</label>
+						<div>
+							<select class="formularioInput" name="privilegio" require>
+								<option value="Administrador">Administrador</option>
+								<option value="Usuario">Usuario</option>
+							</select>
+						</div>
+						<br>
+						<input class="botonInput" type="submit" name="submit" value="Actualizar"/>
+					</form>
+				</div>
+			</div>
+		</main>
+	{% endblock %}

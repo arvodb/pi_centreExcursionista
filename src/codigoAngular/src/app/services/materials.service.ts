@@ -9,13 +9,9 @@ import { Reservas } from '../interfaces/ReservasInterface';
 export class MaterialsService {
 
   constructor(public http: HttpClient) { }
-  public prevUrl : string = 'http://localhost:8000/';
-  public userUrl : string = this.prevUrl+'usuarios';
+  public prevUrl : string = 'http://localhost:8000/api/';
   public reservaUrl : string = this.prevUrl+'reservaMaterial';
-  public getUsers(): Observable<Users>
-  {
-    return this.http.get<Users>(this.userUrl);
-  }
+
   public getBookingMaterial() : Observable<Reservas>
   {
     return this.http.get<Reservas>(this.reservaUrl);

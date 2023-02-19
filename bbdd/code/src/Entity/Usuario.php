@@ -28,16 +28,16 @@ class Usuario
     #[ORM\Column(name: 'PRIVILEGIO', type: Types::STRING, length: 20, nullable: false)]
     private ?string $privilegio = null;
 
-    #[ORM\OneToMany(mappedBy: 'ID_USUARIO', targetEntity: Sala::class)]
-    private Collection $salas;
-
     #[ORM\OneToMany(mappedBy: 'ID_USUARIO', targetEntity: ReservaMaterial::class)]
     private Collection $reservaMaterials;
 
+    #[ORM\OneToMany(mappedBy: 'ID_USUARIO', targetEntity: ReservaSala::class)]
+    private Collection $reservaSalas;
+
     public function __construct()
     {
-        $this->salas = new ArrayCollection();
         $this->reservaMaterials = new ArrayCollection();
+        $this->reservaSalas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,36 +94,6 @@ class Usuario
     }
 
     /**
-     * @return Collection<int, Sala>
-     */
-    public function getSalas(): Collection
-    {
-        return $this->salas;
-    }
-
-    public function addSala(Sala $sala): self
-    {
-        if (!$this->salas->contains($sala)) {
-            $this->salas->add($sala);
-            $sala->setIdUsuario($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSala(Sala $sala): self
-    {
-        if ($this->salas->removeElement($sala)) {
-            // set the owning side to null (unless already changed)
-            if ($sala->getIdUsuario() === $this) {
-                $sala->setIdUsuario(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, ReservaMaterial>
      */
     public function getReservaMaterials(): Collection
@@ -147,6 +117,36 @@ class Usuario
             // set the owning side to null (unless already changed)
             if ($reservaMaterial->getIdUsuario() === $this) {
                 $reservaMaterial->setIdUsuario(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ReservaSala>
+     */
+    public function getReservaSalas(): Collection
+    {
+        return $this->reservaSalas;
+    }
+
+    public function addReservaSala(ReservaSala $reservaSala): self
+    {
+        if (!$this->reservaSalas->contains($reservaSala)) {
+            $this->reservaSalas->add($reservaSala);
+            $reservaSala->setIdUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservaSala(ReservaSala $reservaSala): self
+    {
+        if ($this->reservaSalas->removeElement($reservaSala)) {
+            // set the owning side to null (unless already changed)
+            if ($reservaSala->getIdUsuario() === $this) {
+                $reservaSala->setIdUsuario(null);
             }
         }
 

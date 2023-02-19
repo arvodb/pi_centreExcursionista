@@ -127,70 +127,7 @@ body{
   font-size:10px;
   font-weight: 200;
 }
-
-
-
-
-body{
-  background-image: url(../img/fondo.jpg);
-background-repeat: no-repeat;
-}
-#encabezadoMain {
-  color: #ffffff;
-  background-color: rgba(199, 199, 199, 0.3);
-  border-radius: 5px;
-  width: 60%;
-}
-h3{
-  font-family: fuentePbold;
-  font-weight: bold;
-}
-.inputs{
-  border-radius: 2px;
-  border-color: black;
-  border-width: 2px;
-  font-family: fuentePbold;
-}
-.logo-imagen{
-  mix-blend-mode: multiply;
-  padding-top: 15px;
-  max-height: 65px;
-  margin-left: 45px;
-
-}
-@font-face {
-  font-family: fuentePbold;
-  src: url(../css/Piazzolla-Bold.otf);
-}
-.botonComenzar{
-  font-size: 10px;
-}
-.blanco{
-  font-family: fuentePbold;
-  color: white;
-}
-.negro{
-  font-family: fuentePbold;
-  color: black;
-}
-.containerLow{
- align-items: center;
- text-align: center;
-  background-color: #F2B821;
-  max-width: 400px;
-  border-radius: 20px;
-
-}
-h6{
-  margin-top: 20px;
-  text-align: center;
-  font-family: fuentePbold;
-}
-p{
-  text-align: center;
- font-size: 13px;
-  color: #606C38;
-}
-.btn{
- background-color:  #606C38;
+.pi-serifSmall{
+  font-size:var(--font-size-Cards-titular);
+  font-weight: 900;
 }

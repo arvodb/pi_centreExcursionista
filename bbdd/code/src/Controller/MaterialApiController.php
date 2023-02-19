@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/api', name: 'api_')]
 class MaterialApiController extends AbstractController
 {
     #[Route('/materiales', name: 'material_crud_get_all', methods: ['GET'])]
@@ -25,8 +26,8 @@ class MaterialApiController extends AbstractController
                 "ARMARIO" => $material->getArmario()
             ];
         }
-        $response = [ 'material' => $data ];
-        return $this->json($response);
+        $result = ['materials' => $data];
+        return $this->json($result);
     }
 
     #[Route('/materiales/{id}', name: 'material_crud_get', methods: ['GET'])]
@@ -39,8 +40,7 @@ class MaterialApiController extends AbstractController
             "STOCK" => $material->getStock(),
             "ARMARIO" => $material->getArmario()
         ];
-        $response = [ 'materialList' => $data ];
-        return $this->json($response);
+        return $this->json([$data]);
     }
 
     #[Route('/materiales', name: 'material_crud_post', methods: ['POST'])]

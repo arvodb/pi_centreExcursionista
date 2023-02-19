@@ -16,7 +16,7 @@ class Material
     #[ORM\Column(name: 'ID')]
     private ?int $id = null;
 
-    #[ORM\Column(name: 'NOMBRE', type: Types::STRING, length: 20, nullable: false)]
+    #[ORM\Column(name: 'NOMBRE', type: Types::STRING, length: 255, nullable: false)]
     private ?string $nombre = null;
 
     #[ORM\Column(name: 'STOCK', type: Types::INTEGER, nullable: false)]
